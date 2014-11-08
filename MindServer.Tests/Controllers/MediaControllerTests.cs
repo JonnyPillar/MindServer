@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Web.Http;
+using System.Linq;
 using System.Web.Http.Results;
 using MindServer.Controllers;
+using MindServer.Domain.DataContracts;
 using MindServer.Domain.Entities;
 using MindServer.Domain.Enums;
 using MindServer.Services.Repository.Interfaces;
@@ -23,7 +24,7 @@ namespace MindServer.Tests.Controllers
         [Test]
         public void GetMedia_FiveMockedMediaFiles_ReturnsListContainingAllFive()
         {
-            int expectedNumberOfListElements = 3;
+            const int expectedNumberOfListElements = 3;
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock.Setup(x => x.AudioFileRepository.Get()).Returns(new List<AudioFiles>
             {
@@ -48,11 +49,30 @@ namespace MindServer.Tests.Controllers
             });
 
             _mediaController = new MediaController(unitOfWorkMock.Object);
-            IHttpActionResult response = _mediaController.GetMediaFiles();
-            var result = response as OkNegotiatedContentResult<List<AudioFiles>>;
+            var response = _mediaController.GetMediaFiles();
+            var result = response as OkNegotiatedContentResult<GetMediaResponse>;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(expectedNumberOfListElements, result.Content.Count);
+            var resultContent = result.Content;
+            Assert.IsTrue(resultContent.Success);
+            Assert.AreEqual(expectedNumberOfListElements, resultContent.MediaFiles.Count());
+        }
+
+        [Test]
+        public void GetMedia_ZeroMediaFiles_ReturnsSuccessWithListContainingNoElements()
+        {
+            const int expectedNumberOfListElements = 0;
+            var unitOfWorkMock = new Mock<IUnitOfWork>();
+            unitOfWorkMock.Setup(x => x.AudioFileRepository.Get()).Returns(new List<AudioFiles>());
+
+            _mediaController = new MediaController(unitOfWorkMock.Object);
+            var response = _mediaController.GetMediaFiles();
+            var result = response as OkNegotiatedContentResult<GetMediaResponse>;
+
+            Assert.IsNotNull(result);
+            var resultContent = result.Content;
+            Assert.IsTrue(resultContent.Success);
+            Assert.AreEqual(expectedNumberOfListElements, resultContent.MediaFiles.Count());
         }
     }
 }
