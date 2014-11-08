@@ -168,7 +168,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\MediaController.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
@@ -231,7 +231,16 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MindServer.Domain\MindServer.Domain.csproj">
+      <Project>{2b7c47c3-d687-4cda-be7a-0f70e3c7b59c}</Project>
+      <Name>MindServer.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MindServer.Services\MindServer.Services.csproj">
+      <Project>{2E26BD4F-A688-467F-93EF-CEA6C92D0475}</Project>
+      <Name>MindServer.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

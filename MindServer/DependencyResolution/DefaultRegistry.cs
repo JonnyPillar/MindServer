@@ -15,6 +15,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using StructureMap;
+
 namespace MindServer.DependencyResolution {
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
@@ -23,11 +25,16 @@ namespace MindServer.DependencyResolution {
         #region Constructors and Destructors
 
         public DefaultRegistry() {
-            Scan(
-                scan => {
-                    scan.TheCallingAssembly();
-                    scan.WithDefaultConventions();
-                });
+            //Scan(
+            //    scan => {
+            //        scan.TheCallingAssembly();
+            //        scan.WithDefaultConventions();
+            //    });
+            ObjectFactory.Initialize(x => x.Scan(s =>
+            {
+                s.TheCallingAssembly();
+                s.LookForRegistries();
+            }));
             //For<IExample>().Use<Example>();
         }
 

@@ -6,5 +6,10 @@ namespace MindServer.Domain.Entities.AbstractEntities
     {
         public long Id { get; set; }
         public DateTime CreatedDateTime { get; set; }
+
+        public BaseEntity()
+        {
+            CreatedDateTime = DateTime.UtcNow;
+        }
     }
 }
