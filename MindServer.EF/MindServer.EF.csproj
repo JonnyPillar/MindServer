@@ -54,6 +54,10 @@
     <Compile Include="Migrations\201411081316093_Init of DB.Designer.cs">
       <DependentUpon>201411081316093_Init of DB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201411081944317_Update of DB.cs" />
+    <Compile Include="Migrations\201411081944317_Update of DB.Designer.cs">
+      <DependentUpon>201411081944317_Update of DB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MindServerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,6 +75,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201411081316093_Init of DB.resx">
       <DependentUpon>201411081316093_Init of DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411081944317_Update of DB.resx">
+      <DependentUpon>201411081944317_Update of DB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

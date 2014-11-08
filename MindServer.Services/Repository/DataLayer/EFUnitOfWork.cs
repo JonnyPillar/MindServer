@@ -14,13 +14,10 @@ namespace MindServer.Services.Repository.DataLayer
         private bool _disposed;
         private IRepository<User, long> _userRepository;
 
-        public EFUnitOfWork(IAudioFileRepository audoFileRepository, IUserRepository userRepository)
+        public EFUnitOfWork()
         {
             _dbContext = new MindServerDbContext();
             _dbContext.Configuration.ValidateOnSaveEnabled = true;
-
-            AudioFileRepository = audoFileRepository;
-            UserRepository = userRepository;
         }
 
         public IRepository<User, long> UserRepository

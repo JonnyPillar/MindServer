@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using MindServer.Domain.DataContracts;
+using MindServer.EF;
 using MindServer.Services.Interfaces;
 
 namespace MindServer.Controllers
@@ -13,6 +14,12 @@ namespace MindServer.Controllers
         public AccountController(IAccountService accountService)
         {
             _accountService = accountService;
+        }
+
+        public IHttpActionResult Get()
+        {
+            var temp = new MindServerDbContext();
+            return Ok(temp.Users);
         }
 
         public async Task<IHttpActionResult> SignUp(AccountSignUpRequest accountSignUpRequest)

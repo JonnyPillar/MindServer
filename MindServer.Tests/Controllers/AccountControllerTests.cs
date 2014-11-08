@@ -1,6 +1,7 @@
 ﻿using MindServer.Controllers;
 using MindServer.Domain.DataContracts;
 using MindServer.Services.Interfaces;
+using MindServer.Services.Utils;
 using NUnit.Framework;
 
 namespace MindServer.Tests.Controllers
@@ -23,6 +24,7 @@ namespace MindServer.Tests.Controllers
         [Test]
         public void SignUp_ValidSignUpModel_OkResponseReturnedWithSessionToken()
         {
+            var temp = SessionTokenUtil.GenerateSessionToken();
         }
     }
 }

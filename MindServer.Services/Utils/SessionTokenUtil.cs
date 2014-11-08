@@ -22,7 +22,7 @@ namespace MindServer.Services.Utils
         /// <returns>Hexadecimal String</returns>
         private static string ByteArrayToHexString(byte[] ba)
         {
-            return BitConverter.ToString(ba);
+            return BitConverter.ToString(ba).Replace("-", "");
         }
     }
 }

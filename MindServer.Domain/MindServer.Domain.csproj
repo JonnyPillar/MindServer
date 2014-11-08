@@ -41,13 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContracts\AccountLogInRequest.cs" />
+    <Compile Include="DataContracts\AccountLogInResponse.cs" />
     <Compile Include="DataContracts\AccountLogOutRequest.cs" />
     <Compile Include="DataContracts\AccountSignUpRequest.cs" />
     <Compile Include="DataContracts\AccountSignUpResponse.cs" />
     <Compile Include="DataContracts\GetMediaResponse.cs" />
     <Compile Include="Entities\AbstractEntities\BaseEntity.cs" />
     <Compile Include="Entities\AbstractEntities\MediaEntity.cs" />
-    <Compile Include="Entities\AudioFiles.cs" />
+    <Compile Include="Entities\AudioFile.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\MediaType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

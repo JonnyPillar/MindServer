@@ -187,6 +187,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Identities\UserIdentity.cs" />
+    <Compile Include="Identities\UserPrinciple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +246,10 @@
     <ProjectReference Include="..\MindServer.Domain\MindServer.Domain.csproj">
       <Project>{2b7c47c3-d687-4cda-be7a-0f70e3c7b59c}</Project>
       <Name>MindServer.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MindServer.EF\MindServer.EF.csproj">
+      <Project>{6B911CAF-2EF7-4851-977D-C6A494CBC72D}</Project>
+      <Name>MindServer.EF</Name>
     </ProjectReference>
     <ProjectReference Include="..\MindServer.Services\MindServer.Services.csproj">
       <Project>{2E26BD4F-A688-467F-93EF-CEA6C92D0475}</Project>
