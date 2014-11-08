@@ -14,6 +14,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C6BA1C
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{332BFA32-F210-4689-B0E4-93BA86074B88}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{4A835106-284A-4C07-8471-CC0FCC9F9322}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F0B2181B-504F-40C5-9C0B-388860DA1B12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindServer.Domain", "MindServer.Domain\MindServer.Domain.csproj", "{2B7C47C3-D687-4CDA-BE7A-0F70E3C7B59C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindServer.EF", "MindServer.EF\MindServer.EF.csproj", "{6B911CAF-2EF7-4851-977D-C6A494CBC72D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindServer.Services", "MindServer.Services\MindServer.Services.csproj", "{2E26BD4F-A688-467F-93EF-CEA6C92D0475}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,8 +40,27 @@ Global
 		{E8740216-1E66-47E6-A25C-852D5FC69CB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8740216-1E66-47E6-A25C-852D5FC69CB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8740216-1E66-47E6-A25C-852D5FC69CB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B7C47C3-D687-4CDA-BE7A-0F70E3C7B59C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B7C47C3-D687-4CDA-BE7A-0F70E3C7B59C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B7C47C3-D687-4CDA-BE7A-0F70E3C7B59C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B7C47C3-D687-4CDA-BE7A-0F70E3C7B59C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B911CAF-2EF7-4851-977D-C6A494CBC72D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B911CAF-2EF7-4851-977D-C6A494CBC72D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B911CAF-2EF7-4851-977D-C6A494CBC72D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B911CAF-2EF7-4851-977D-C6A494CBC72D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E26BD4F-A688-467F-93EF-CEA6C92D0475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E26BD4F-A688-467F-93EF-CEA6C92D0475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E26BD4F-A688-467F-93EF-CEA6C92D0475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E26BD4F-A688-467F-93EF-CEA6C92D0475}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5D21A87F-2E3A-46D1-8C22-9E60F67C69DC} = {4A835106-284A-4C07-8471-CC0FCC9F9322}
+		{E8740216-1E66-47E6-A25C-852D5FC69CB8} = {F0B2181B-504F-40C5-9C0B-388860DA1B12}
+		{2B7C47C3-D687-4CDA-BE7A-0F70E3C7B59C} = {332BFA32-F210-4689-B0E4-93BA86074B88}
+		{6B911CAF-2EF7-4851-977D-C6A494CBC72D} = {332BFA32-F210-4689-B0E4-93BA86074B88}
+		{2E26BD4F-A688-467F-93EF-CEA6C92D0475} = {332BFA32-F210-4689-B0E4-93BA86074B88}
 	EndGlobalSection
 EndGlobal
