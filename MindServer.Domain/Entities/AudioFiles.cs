@@ -3,9 +3,9 @@ using MindServer.Domain.Enums;
 
 namespace MindServer.Domain.Entities
 {
-    public class AudioMedia : MediaEntity
+    public class AudioFiles : MediaEntity
     {
-        public AudioMedia()
+        public AudioFiles()
         {
             MediaType = MediaType.Audio;
         }
