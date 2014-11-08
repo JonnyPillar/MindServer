@@ -7,7 +7,7 @@ namespace MindServer.EF.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.AudioFiles",
+                "dbo.AudioFile",
                 c => new
                 {
                     Id = c.Long(false, true),
@@ -36,7 +36,7 @@ namespace MindServer.EF.Migrations
         public override void Down()
         {
             DropTable("dbo.Users");
-            DropTable("dbo.AudioFiles");
+            DropTable("dbo.AudioFile");
         }
     }
 }

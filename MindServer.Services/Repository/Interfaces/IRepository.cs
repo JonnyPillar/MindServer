@@ -13,6 +13,7 @@ namespace MindServer.Services.Repository.Interfaces
         IEnumerable<TEntity> GetRange(int quantity);
         IEnumerable<TEntity> GetRange(int page, int quantity);
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+        TEntity Single(Expression<Func<TEntity, bool>> predicate);
 
         void Create(TEntity entity);
         void Delete(TEntity entity);

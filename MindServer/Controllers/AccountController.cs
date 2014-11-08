@@ -41,5 +41,45 @@ namespace MindServer.Controllers
                 return InternalServerError(e);
             }
         }
+
+        public async Task<IHttpActionResult> LogIn(AccountLogInRequest accountLogInRequest)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            try
+            {
+                var sessionToken = await _accountService.UserLogIn(accountLogInRequest);
+                if (string.IsNullOrEmpty(sessionToken))
+                {
+                    return Ok(new AccountLogInResponse
+                    {
+                        Success = false,
+                        SessionToken = string.Empty
+                    });
+                }
+                return Ok(new AccountLogInResponse
+                {
+                    Success = true,
+                    SessionToken = sessionToken
+                });
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
+
+        public async Task<IHttpActionResult> LogOut(AccountLogOutRequest accountLogOutRequest)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            try
+            {
+                await _accountService.UserLogOut(accountLogOutRequest);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return InternalServerError();
+            }
+        }
     }
 }

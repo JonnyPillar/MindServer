@@ -5,7 +5,7 @@ using MindServer.Services.Repository.Interfaces;
 
 namespace MindServer.Services.Repository
 {
-    public  class AudioFileRepository : EntityFrameworkRepository<AudioFiles, int>, IAudioFileRepository
+    public class AudioFileRepository : EntityFrameworkRepository<AudioFile, long>, IAudioFileRepository
     {
         public AudioFileRepository(DbContext dbContext)
         {

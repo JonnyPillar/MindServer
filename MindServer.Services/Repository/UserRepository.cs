@@ -5,7 +5,7 @@ using MindServer.Services.Repository.Interfaces;
 
 namespace MindServer.Services.Repository
 {
-    public class UserRepository : EntityFrameworkRepository<User, int>, IUserRepository
+    public class UserRepository : EntityFrameworkRepository<User, long>, IUserRepository
     {
         public UserRepository(DbContext dbContext)
         {

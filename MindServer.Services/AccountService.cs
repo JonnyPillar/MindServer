@@ -18,7 +18,10 @@ namespace MindServer.Services
 
         public async Task<string> UserSignUp(AccountSignUpRequest signUpRequest)
         {
-            var passwordHasherUtil = new PasswordHashUtil();
+            var userExist = _unitOfWork.UserRepository.Exists(x => x.EmailAddress.Equals(signUpRequest.Username));
+            if (userExist) return null;
+
+            var passwordHasherUtil = new PasswordHashUtil(signUpRequest.Password);
             var sessionToken = SessionTokenUtil.GenerateSessionToken();
             var newUser = new User
             {
@@ -27,6 +30,7 @@ namespace MindServer.Services
                 PasswordHash = passwordHasherUtil.PasswordHash,
                 PasswordSalt = passwordHasherUtil.PasswordSalt,
                 IsAdmin = false,
+                IsLoggedIn = true,
                 SessionToken = sessionToken
             };
 
@@ -37,11 +41,31 @@ namespace MindServer.Services
 
         public async Task<string> UserLogIn(AccountLogInRequest logInRequest)
         {
+            var requestingUser = _unitOfWork.UserRepository.Single(x => x.EmailAddress.Equals(logInRequest.EmailAddress));
+            if (requestingUser != null)
+            {
+                var passwordHashUtil = new PasswordHashUtil(logInRequest.Password, requestingUser.PasswordSalt);
+                if (requestingUser.PasswordHash.Equals(passwordHashUtil.PasswordHash))
+                {
+                    var sessionToken = SessionTokenUtil.GenerateSessionToken();
+                    requestingUser.SessionToken = sessionToken;
+                    requestingUser.IsLoggedIn = true;
+                    await _unitOfWork.SaveChangesAsync();
+                    return sessionToken;
+                }
+            }
             return null;
         }
 
         public async Task UserLogOut(AccountLogOutRequest logOutRequest)
         {
+            var requestingUser =
+                _unitOfWork.UserRepository.Single(x => x.EmailAddress.Equals(logOutRequest.EmailAddress));
+            if (requestingUser != null)
+            {
+                requestingUser.IsLoggedIn = false;
+                await _unitOfWork.SaveChangesAsync();
+            }
         }
     }
 }

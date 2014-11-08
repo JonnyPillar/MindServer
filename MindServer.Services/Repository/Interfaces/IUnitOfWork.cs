@@ -6,8 +6,8 @@ namespace MindServer.Services.Repository.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<User, int> UserRepository { get; }
-        IRepository<AudioFiles, int> AudioFileRepository { get; }
+        IRepository<User, long> UserRepository { get; }
+        IRepository<AudioFile, long> AudioFileRepository { get; }
 
         void SaveChanges();
         Task SaveChangesAsync();

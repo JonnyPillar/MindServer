@@ -51,6 +51,11 @@ namespace MindServer.Services.Repository.DataLayer
             return _dbContext.Set<TEntity>().Where(predicate);
         }
 
+        public TEntity Single(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _dbContext.Set<TEntity>().Single(predicate);
+        }
+
         public void Create(TEntity entity)
         {
             if (entity == null) throw new ArgumentNullException("entity");

@@ -15,6 +15,9 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using MindServer.Services;
+using MindServer.Services.Interfaces;
+using MindServer.Services.Repository;
 using MindServer.Services.Repository.DataLayer;
 using MindServer.Services.Repository.Interfaces;
 using StructureMap;
@@ -27,31 +30,12 @@ namespace MindServer.DependencyResolution {
         #region Constructors and Destructors
 
         public DefaultRegistry() {
-            //Scan(
-            //    scan => {
-            //        scan.TheCallingAssembly();
-            //        scan.WithDefaultConventions();
-            //    });
-            //ObjectFactory.Initialize(x => x.Scan(s =>
-            //{
-            //    s.TheCallingAssembly();
-            //    s.LookForRegistries();
-            //}));
-            //For<IExample>().Use<Example>();
             ObjectFactory.Initialize(cfg => cfg.Scan(scan =>
             {
-                //scan.Assembly("MindServer.Services");
-                //scan.Assembly("MindServer");
-                //scan.LookForRegistries();
                 For<IUnitOfWork>().Use<EFUnitOfWork>();
-                For<IUnitOfWork>().Use<EFUnitOfWork>();
-
-                //scan.AssembliesFromApplicationBaseDirectory();
-                //scan.TheCallingAssembly();
-
-                // named assembly not found ?
-                //scan.Assembly("myApp");
-                //scan.WithDefaultConventions();
+                For<IUserRepository>().Use<UserRepository>();
+                For<IAudioFileRepository>().Use<AudioFileRepository>();
+                For<IAccountService>().Use<AccountService>();
             }));
         }
 

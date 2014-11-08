@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MindServer.Domain.Entities;
 
 namespace MindServer.Services.Repository.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User, long>
     {
     }
 }

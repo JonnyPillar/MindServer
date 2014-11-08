@@ -26,21 +26,21 @@ namespace MindServer.Tests.Controllers
         {
             const int expectedNumberOfListElements = 3;
             var unitOfWorkMock = new Mock<IUnitOfWork>();
-            unitOfWorkMock.Setup(x => x.AudioFileRepository.Get()).Returns(new List<AudioFiles>
+            unitOfWorkMock.Setup(x => x.AudioFileRepository.Get()).Returns(new List<AudioFile>
             {
-                new AudioFiles
+                new AudioFile
                 {
                     Id = 1,
                     FileName = "File One",
                     MediaType = MediaType.Audio,
                 },
-                new AudioFiles
+                new AudioFile
                 {
                     Id = 2,
                     FileName = "File Two",
                     MediaType = MediaType.Audio,
                 },
-                new AudioFiles
+                new AudioFile
                 {
                     Id = 3,
                     FileName = "File Three",
@@ -63,7 +63,7 @@ namespace MindServer.Tests.Controllers
         {
             const int expectedNumberOfListElements = 0;
             var unitOfWorkMock = new Mock<IUnitOfWork>();
-            unitOfWorkMock.Setup(x => x.AudioFileRepository.Get()).Returns(new List<AudioFiles>());
+            unitOfWorkMock.Setup(x => x.AudioFileRepository.Get()).Returns(new List<AudioFile>());
 
             _mediaController = new MediaController(unitOfWorkMock.Object);
             var response = _mediaController.GetMediaFiles();

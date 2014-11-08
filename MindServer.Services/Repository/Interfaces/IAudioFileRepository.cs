@@ -1,6 +1,8 @@
-﻿namespace MindServer.Services.Repository.Interfaces
+﻿using MindServer.Domain.Entities;
+
+namespace MindServer.Services.Repository.Interfaces
 {
-    public  interface IAudioFileRepository
+    public interface IAudioFileRepository : IRepository<AudioFile, long>
     {
     }
 }

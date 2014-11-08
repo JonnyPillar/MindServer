@@ -10,17 +10,20 @@ namespace MindServer.Services.Repository.DataLayer
     public class EFUnitOfWork : IUnitOfWork
     {
         private readonly DbContext _dbContext;
-        private IRepository<AudioFiles, int> _audioFilesRepository;
+        private IRepository<AudioFile, long> _audioFilesRepository;
         private bool _disposed;
-        private IRepository<User, int> _userRepository;
+        private IRepository<User, long> _userRepository;
 
-        public EFUnitOfWork()
+        public EFUnitOfWork(IAudioFileRepository audoFileRepository, IUserRepository userRepository)
         {
             _dbContext = new MindServerDbContext();
             _dbContext.Configuration.ValidateOnSaveEnabled = true;
+
+            AudioFileRepository = audoFileRepository;
+            UserRepository = userRepository;
         }
 
-        public IRepository<User, int> UserRepository
+        public IRepository<User, long> UserRepository
         {
             get
             {
@@ -30,9 +33,10 @@ namespace MindServer.Services.Repository.DataLayer
                 }
                 return _userRepository;
             }
+            set { _userRepository = value; }
         }
 
-        public IRepository<AudioFiles, int> AudioFileRepository
+        public IRepository<AudioFile, long> AudioFileRepository
         {
             get
             {
@@ -42,6 +46,7 @@ namespace MindServer.Services.Repository.DataLayer
                 }
                 return _audioFilesRepository;
             }
+            set { _audioFilesRepository = value; }
         }
 
         public void SaveChanges()

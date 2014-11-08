@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountService.cs" />
+    <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AudioFileRepository.cs" />
     <Compile Include="Repository\DataLayer\EFUnitOfWork.cs" />
@@ -57,6 +59,8 @@
     <Compile Include="Repository\Interfaces\IUnitOfWork.cs" />
     <Compile Include="Repository\Interfaces\IUserRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Utils\PasswordHashUtil.cs" />
+    <Compile Include="Utils\SessionTokenUtil.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
