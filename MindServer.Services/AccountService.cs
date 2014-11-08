@@ -67,5 +67,11 @@ namespace MindServer.Services
                 await _unitOfWork.SaveChangesAsync();
             }
         }
+
+        public User AuthenticateSessionToken(string sessionToken)
+        {
+            var authenticatingUser = _unitOfWork.UserRepository.Single(x => x.SessionToken.Equals(sessionToken));
+            return authenticatingUser ?? null;
+        }
     }
 }
