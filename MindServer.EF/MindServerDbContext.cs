@@ -10,8 +10,8 @@ namespace MindServer.EF
         {
         }
 
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<AudioFile> AudioFiles { get; set; }
+        public virtual IDbSet<User> Users { get; set; }
+        public virtual IDbSet<AudioFile> AudioFiles { get; set; }
 
         protected virtual void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using MindServer.Domain.Entities;
 
@@ -26,24 +25,26 @@ namespace MindServer.EF.Migrations
                 SessionToken = "B802AD94EE7F4E80A808B8EF8E60C1A3B28619A7E36C352C326173FE6062853C"
             });
 
-            context.AudioFiles.AddRange(new List<AudioFile>
-            {
+            context.AudioFiles.Add(
                 new AudioFile
                 {
                     Id = 1,
                     FileName = "AudioFileOne.mp3",
-                },
+                });
+
+            context.AudioFiles.Add(
                 new AudioFile
                 {
                     Id = 2,
                     FileName = "AudioFileTwo.mp3",
-                },
+                });
+
+            context.AudioFiles.Add(
                 new AudioFile
                 {
                     Id = 3,
                     FileName = "AudioFileThree.mp3",
-                }
-            });
+                });
         }
     }
 }

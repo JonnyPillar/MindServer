@@ -1,34 +1,28 @@
 ﻿using System;
 using System.Web.Http;
-using MindServer.Domain.DataContracts;
-using MindServer.Services.Repository.Interfaces;
+using MindServer.Services.Interfaces;
 
 namespace MindServer.Controllers
 {
     public class MediaController : ApiController
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMediaService _mediaService;
 
-        public MediaController(IUnitOfWork unitOfWork)
+        public MediaController(IMediaService mediaService)
         {
-            _unitOfWork = unitOfWork;
+            _mediaService = mediaService;
         }
 
         public IHttpActionResult GetMediaFiles()
         {
             try
             {
-                var mediaFileList = _unitOfWork.AudioFileRepository.Get();
-                var getMediaResponse = new GetMediaResponse
-                {
-                    Success = true,
-                    MediaFiles = mediaFileList
-                };
-                return Ok(getMediaResponse);
+                var response = _mediaService.GetAllMedia();
+                return Ok(response);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return InternalServerError();
+                return InternalServerError(e);
             }
         }
     }

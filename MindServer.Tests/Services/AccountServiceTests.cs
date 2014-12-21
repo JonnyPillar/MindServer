@@ -1,59 +1,81 @@
-﻿using System;
-using System.Threading.Tasks;
-using MindServer.Domain.DataContracts;
-using MindServer.Domain.Entities;
-using MindServer.Services;
-using MindServer.Services.Repository;
-using MindServer.Services.Repository.DataLayer;
-using MindServer.Services.Repository.Interfaces;
-using Moq;
-using NUnit.Framework;
-using MockRepository = Rhino.Mocks.MockRepository;
+﻿using NUnit.Framework;
 
 namespace MindServer.Tests.Services
 {
-    //[TestFixture]
-    //public class AccountServiceTests
-    //{
-    //    private IUserRepository userRepository;
-    //    private IAudioFileRepository audioFileRepository;
-    //    private IUnitOfWork unitOfWork;
+    [TestFixture]
+    public class AccountServiceTests
+    {
+        //[SetUp]
+        //public void SetUp()
+        //{
+        //    _mindServerDbContext = MockRepository.GenerateStub<MindServerDbContext>();
+        //    _mindServerDbContext.Users = new FakeDbSet<User>();
 
-    //    [SetUp]
-    //    public void SetUp()
-    //    {
-            
-    //    }
+        //    //_unitOfWork = MockRepository.GenerateStub<IUnitOfWork>();
+        //    //_unitOfWork.Stub(x => x.UserRepository).Return(_userRepository);
 
+        //    _userRepository = MockRepository.GenerateStub<IUserRepository>();
 
-    //    [Test]
-    //    public async Task UserSignUp_ValidModel_SessionTokenReturned()
-    //    {
+        //    _unitOfWork = new EFUnitOfWork(_mindServerDbContext);
+        //    _accountService = new AccountService(_unitOfWork);
+        //}
 
+        //private IUnitOfWork _unitOfWork;
+        //private MindServerDbContext _mindServerDbContext;
+        //private IAccountService _accountService;
+        //private IUserRepository _userRepository;
 
-            
-    //        var unitOfWorks = MockRepository.GenerateStub<IUnitOfWork>();
+        //[Test]
+        //public void UserSignUp_UserAlreadyExists_ReturnsResponseObjectContainsEmptySessionToken()
+        //{
+        //    var request = new AccountSignUpRequest
+        //    {
+        //        Username = "existingUser@test.com",
+        //        Password = "123456"
+        //    };
 
+        //    var responseTask = _accountService.AccountSignUp(request);
+        //    var response = responseTask.Result;
 
+        //    Assert.IsNullOrEmpty(response.SessionToken);
+        //}
 
-    //        //var userRepository = new Mock<UserRepository>().SetupAllProperties();
-    //        //userRepository.Setup(x => x.Create(It.IsAny<User>()));
-    //        //var audioFileRepository = new Mock<AudioFileRepository>();
+        //[Test]
+        //public void UserSignUp_UserAlreadyExists_ReturnsResponseObjectContainsErrorMessage()
+        //{
+        //    var request = new AccountSignUpRequest
+        //    {
+        //        Username = "existingUser@test.com",
+        //        Password = "123456"
+        //    };
 
-    //        //var unitOfWork = new Mock<EFUnitOfWork>(userRepository.Object, audioFileRepository.Object);
-    //        //var accountService = new AccountService(unitOfWork.Object);
+        //    var responseTask = _accountService.AccountSignUp(request);
+        //    var response = responseTask.Result;
 
-    //        //var validRequest = new AccountSignUpRequest
-    //        //{
-    //        //    Username = "test@testuser.com",
-    //        //    Password = "testpass",
-    //        //    DateOfBirth = DateTime.UtcNow
-    //        //};
+        //    Assert.IsNotNullOrEmpty(response.ResponseContract);
+        //}
 
-    //        //var result = await accountService.UserSignUp(validRequest);
+        //[Test]
+        //public void UserSignUp_UserAlreadyExists_ReturnsResponseObjectWithSuccessFalse()
+        //{
+        //    _mindServerDbContext.Users.Add(new User
+        //    {
+        //        EmailAddress = "existingUser@test.com"
+        //    });
 
-    //        //unitOfWork.Verify(x => x.UserRepository.Create(It.IsAny<User>()));
-    //        //Assert.IsNotNullOrEmpty(result);
-    //    }
-    //}
+        //    //_unitOfWork.UserRepository.Stub(x => x.Exists(It.IsAny<Expression<Func<User, bool>>>()))
+        //    //    .Return(true);
+
+        //    var request = new AccountSignUpRequest
+        //    {
+        //        Username = "existingUser@test.com",
+        //        Password = "123456"
+        //    };
+
+        //    var responseTask = _accountService.AccountSignUp(request);
+        //    var response = responseTask.Result;
+
+        //    Assert.IsFalse(response.Success);
+        //}
+    }
 }

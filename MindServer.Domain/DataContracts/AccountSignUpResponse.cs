@@ -1,8 +1,9 @@
-﻿namespace MindServer.Domain.DataContracts
+﻿using MindServer.Domain.DataContracts.AbstractDataContracts;
+
+namespace MindServer.Domain.DataContracts
 {
-    public struct AccountSignUpResponse
+    public class AccountSignUpResponse : BaseResponseContract
     {
-        public bool Success { get; set; }
         public string SessionToken { get; set; }
     }
 }

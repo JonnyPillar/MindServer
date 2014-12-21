@@ -58,6 +58,10 @@
     <Compile Include="Migrations\201411081944317_Update of DB.Designer.cs">
       <DependentUpon>201411081944317_Update of DB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201412211202114_Updated MediaEntity.cs" />
+    <Compile Include="Migrations\201412211202114_Updated MediaEntity.Designer.cs">
+      <DependentUpon>201412211202114_Updated MediaEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MindServerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +82,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201411081944317_Update of DB.resx">
       <DependentUpon>201411081944317_Update of DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412211202114_Updated MediaEntity.resx">
+      <DependentUpon>201412211202114_Updated MediaEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

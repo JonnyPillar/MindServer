@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using MindServer.Domain.DataContracts;
 using MindServer.Domain.Entities;
+using MindServer.Domain.Exceptions;
+using MindServer.Domain.Exceptions.AbstractExceptions;
 using MindServer.Services.Interfaces;
 using MindServer.Services.Repository.Interfaces;
 using MindServer.Services.Utils;
@@ -9,24 +11,136 @@ namespace MindServer.Services
 {
     public class AccountService : IAccountService
     {
+        private readonly IUserService _userService;
         private readonly IUnitOfWork _unitOfWork;
 
-        public AccountService(IUnitOfWork unitOfWork)
+        public AccountService(IUserService userService, IUnitOfWork unitOfWork)
         {
+            _userService = userService;
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<string> UserSignUp(AccountSignUpRequest signUpRequest)
+        public async Task<AccountSignUpResponse> UserSignUp(AccountSignUpRequest accountSignUpRequest)
         {
-            var userExist = _unitOfWork.UserRepository.Exists(x => x.EmailAddress.Equals(signUpRequest.Username));
-            if (userExist) return null;
+            try
+            {
+                _userService.CheckUserDoesntExist(accountSignUpRequest);
 
-            var passwordHasherUtil = new PasswordHashUtil(signUpRequest.Password);
+                var sessionToken = await CreateNewUserAndGetSessionToken(accountSignUpRequest);
+
+                return new AccountSignUpResponse
+                {
+                    Success = true,
+                    SessionToken = sessionToken,
+                    Message = "Registration Complete"
+                };
+            }
+            catch (MindServerException e)
+            {
+                return new AccountSignUpResponse
+                {
+                    Success = false,
+                    Message = e.Message
+                };
+            }
+        }
+
+        public async Task<AccountLogInResponse> UserLogIn(AccountLogInRequest logInRequest)
+        {
+            try
+            {
+                var requestingUser = _userService.GetUser(logInRequest);
+
+                var sessionToken = await LogUserInAndGetSessionToken(logInRequest, requestingUser);
+
+                return new AccountLogInResponse
+                {
+                    Success = true,
+                    SessionToken = sessionToken,
+                    Message = "Log In Successful"
+                };
+            }
+            catch (MindServerException e)
+            {
+                return new AccountLogInResponse
+                {
+                    Success = false,
+                    Message = e.Message,
+                };
+            }
+        }
+
+        public async Task<AccountLogOutResponse> UserLogOut(AccountLogOutRequest logOutRequest)
+        {
+            try
+            {
+                _userService.CheckUserExists(logOutRequest.EmailAddress);
+
+                await LogUserOut(logOutRequest);
+
+                return new AccountLogOutResponse
+                {
+                    Success = true,
+                    Message = "User Successfully Signed Out"
+                };
+            }
+            catch (MindServerException e)
+            {
+                return new AccountLogOutResponse
+                {
+                    Success = false,
+                    Message = e.Message
+                };
+            }
+        }
+
+        public User AuthenticateSessionToken(string sessionToken)
+        {
+            var authenticatingUser = _unitOfWork.UserRepository.Single(x => x.SessionToken.Equals(sessionToken));
+            if (authenticatingUser == null) throw new InvalidSessionTokenException();
+
+            return authenticatingUser;
+        }
+
+        private async Task LogUserOut(AccountLogOutRequest logOutRequest)
+        {
+            var requestingUser =
+                _unitOfWork.UserRepository.Single(x => x.EmailAddress.Equals(logOutRequest.EmailAddress));
+
+            requestingUser.IsLoggedIn = false;
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        private async Task<string> LogUserInAndGetSessionToken(AccountLogInRequest logInRequest, User requestingUser)
+        {
+            var passwordHashUtil = new PasswordHashUtil(logInRequest.Password, requestingUser.PasswordSalt);
+            if (!requestingUser.PasswordHash.Equals(passwordHashUtil.PasswordHash))
+            {
+                throw new UserAuthenticationException();
+            }
+
+            var sessionToken = UpdateUserToLoggedIn(requestingUser);
+
+            await _unitOfWork.SaveChangesAsync();
+            return sessionToken;
+        }
+
+        private static string UpdateUserToLoggedIn(User requestingUser)
+        {
+            var sessionToken = SessionTokenUtil.GenerateSessionToken();
+            requestingUser.SessionToken = sessionToken;
+            requestingUser.IsLoggedIn = true;
+            return sessionToken;
+        }
+
+        private async Task<string> CreateNewUserAndGetSessionToken(AccountSignUpRequest accountSignUpRequest)
+        {
+            var passwordHasherUtil = new PasswordHashUtil(accountSignUpRequest.Password);
             var sessionToken = SessionTokenUtil.GenerateSessionToken();
             var newUser = new User
             {
-                EmailAddress = signUpRequest.Username,
-                DateOfBirth = signUpRequest.DateOfBirth,
+                EmailAddress = accountSignUpRequest.Username,
+                DateOfBirth = accountSignUpRequest.DateOfBirth,
                 PasswordHash = passwordHasherUtil.PasswordHash,
                 PasswordSalt = passwordHasherUtil.PasswordSalt,
                 IsAdmin = false,
@@ -37,41 +151,6 @@ namespace MindServer.Services
             _unitOfWork.UserRepository.Create(newUser);
             await _unitOfWork.SaveChangesAsync();
             return sessionToken;
-        }
-
-        public async Task<string> UserLogIn(AccountLogInRequest logInRequest)
-        {
-            var requestingUser = _unitOfWork.UserRepository.Single(x => x.EmailAddress.Equals(logInRequest.EmailAddress));
-            if (requestingUser != null)
-            {
-                var passwordHashUtil = new PasswordHashUtil(logInRequest.Password, requestingUser.PasswordSalt);
-                if (requestingUser.PasswordHash.Equals(passwordHashUtil.PasswordHash))
-                {
-                    var sessionToken = SessionTokenUtil.GenerateSessionToken();
-                    requestingUser.SessionToken = sessionToken;
-                    requestingUser.IsLoggedIn = true;
-                    await _unitOfWork.SaveChangesAsync();
-                    return sessionToken;
-                }
-            }
-            return null;
-        }
-
-        public async Task UserLogOut(AccountLogOutRequest logOutRequest)
-        {
-            var requestingUser =
-                _unitOfWork.UserRepository.Single(x => x.EmailAddress.Equals(logOutRequest.EmailAddress));
-            if (requestingUser != null)
-            {
-                requestingUser.IsLoggedIn = false;
-                await _unitOfWork.SaveChangesAsync();
-            }
-        }
-
-        public User AuthenticateSessionToken(string sessionToken)
-        {
-            var authenticatingUser = _unitOfWork.UserRepository.Single(x => x.SessionToken.Equals(sessionToken));
-            return authenticatingUser ?? null;
         }
     }
 }

@@ -2,8 +2,7 @@
 
 namespace MindServer.Domain.DataContracts
 {
-    public class AccountLogInResponse : BaseResponseContract
+    public class AccountLogOutResponse : BaseResponseContract
     {
-        public string SessionToken { get; set; }
     }
 }

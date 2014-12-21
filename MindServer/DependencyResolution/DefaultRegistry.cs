@@ -21,24 +21,23 @@ using MindServer.Services.Repository;
 using MindServer.Services.Repository.DataLayer;
 using MindServer.Services.Repository.Interfaces;
 using StructureMap;
+using StructureMap.Configuration.DSL;
 
-namespace MindServer.DependencyResolution {
-    using StructureMap.Configuration.DSL;
-    using StructureMap.Graph;
-	
-    public class DefaultRegistry : Registry {
-        #region Constructors and Destructors
-
-        public DefaultRegistry() {
+namespace MindServer.DependencyResolution
+{
+    public class DefaultRegistry : Registry
+    {
+        public DefaultRegistry()
+        {
             ObjectFactory.Initialize(cfg => cfg.Scan(scan =>
             {
                 For<IUnitOfWork>().Use<EFUnitOfWork>();
                 For<IUserRepository>().Use<UserRepository>();
                 For<IAudioFileRepository>().Use<AudioFileRepository>();
                 For<IAccountService>().Use<AccountService>();
+                For<IMediaService>().Use<MediaService>();
+                For<IUserService>().Use<UserService>();
             }));
         }
-
-        #endregion
     }
 }

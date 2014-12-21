@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Web.Http.Results;
 using MindServer.Controllers;
 using MindServer.Domain.DataContracts;
-using MindServer.Domain.Entities;
-using MindServer.Domain.Enums;
-using MindServer.Services.Repository.Interfaces;
+using MindServer.Services.Interfaces;
 using Moq;
 using NUnit.Framework;
 
@@ -17,62 +14,98 @@ namespace MindServer.Tests.Controllers
         [SetUp]
         public void SetUp()
         {
+            _mockedMediaService = new Mock<IMediaService>();
+            _mediaController = new MediaController(_mockedMediaService.Object);
         }
 
+        private Mock<IMediaService> _mockedMediaService;
         private MediaController _mediaController;
 
         [Test]
-        public void GetMedia_FiveMockedMediaFiles_ReturnsListContainingAllFive()
+        public void GetMediaFiles_MediaServiceThrowsExecption_ErrorResponseMessageReturned()
         {
-            const int expectedNumberOfListElements = 3;
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
-            unitOfWorkMock.Setup(x => x.AudioFileRepository.Get()).Returns(new List<AudioFile>
-            {
-                new AudioFile
-                {
-                    Id = 1,
-                    FileName = "File One",
-                    MediaType = MediaType.Audio,
-                },
-                new AudioFile
-                {
-                    Id = 2,
-                    FileName = "File Two",
-                    MediaType = MediaType.Audio,
-                },
-                new AudioFile
-                {
-                    Id = 3,
-                    FileName = "File Three",
-                    MediaType = MediaType.Audio,
-                }
-            });
+            _mockedMediaService.Setup(x => x.GetAllMedia()).Throws(new Exception());
 
-            _mediaController = new MediaController(unitOfWorkMock.Object);
             var response = _mediaController.GetMediaFiles();
-            var result = response as OkNegotiatedContentResult<GetMediaResponse>;
 
-            Assert.IsNotNull(result);
-            var resultContent = result.Content;
-            Assert.IsTrue(resultContent.Success);
-            Assert.AreEqual(expectedNumberOfListElements, resultContent.MediaFiles.Count());
+            Assert.IsInstanceOf<ExceptionResult>(response);
         }
 
         [Test]
-        public void GetMedia_ZeroMediaFiles_ReturnsSuccessWithListContainingNoElements()
+        public void GetMediaFiles_ResponseObjectReturned_OkResponseReturned()
         {
-            const int expectedNumberOfListElements = 0;
-            var unitOfWorkMock = new Mock<IUnitOfWork>();
-            unitOfWorkMock.Setup(x => x.AudioFileRepository.Get()).Returns(new List<AudioFile>());
+            _mockedMediaService.Setup(x => x.GetAllMedia()).Returns(new GetMediaResponse());
 
-            _mediaController = new MediaController(unitOfWorkMock.Object);
             var response = _mediaController.GetMediaFiles();
-            var result = response as OkNegotiatedContentResult<GetMediaResponse>;
 
+            var result = response as OkNegotiatedContentResult<GetMediaResponse>;
             Assert.IsNotNull(result);
-            var resultContent = result.Content;
-            Assert.IsTrue(resultContent.Success);
-            Assert.AreEqual(expectedNumberOfListElements, resultContent.MediaFiles.Count());
         }
+
+        //[Test]
+        //public void GetMedia_FiveMockedMediaFiles_ReturnsListContainingAllFive()
+        //{
+        //    const int expectedNumberOfListElements = 3;
+
+        //    var userService = new Mock<IMediaService>();
+        //    userService.Setup(x => x.GetAllMedia()).Returns(new GetMediaResponse
+        //    {
+        //        Success = true,
+        //        MediaFiles = new List<GetMediaResponseItem>
+        //        {
+        //            new GetMediaResponseItem(new AudioFile
+        //            {
+        //                Id = 1,
+        //                FileName = "File One",
+        //                MediaType = MediaType.Audio,
+        //            }),
+        //            new GetMediaResponseItem(new AudioFile
+        //            {
+        //                Id = 2,
+        //                FileName = "File Two",
+        //                MediaType = MediaType.Audio,
+        //            }),
+        //            new GetMediaResponseItem(new AudioFile
+        //            {
+        //                Id = 3,
+        //                FileName = "File Three",
+        //                MediaType = MediaType.Audio,
+        //            }),
+        //        }
+        //    });
+
+        //    _mediaController = new MediaController(userService.Object);
+        //    var response = _mediaController.GetMediaFiles();
+        //    var result = response as OkNegotiatedContentResult<GetMediaResponse>;
+
+        //    Assert.IsNotNull(result);
+        //    var resultContent = result.Content;
+        //    Assert.IsTrue(resultContent.Success);
+        //    Assert.AreEqual(expectedNumberOfListElements, resultContent.MediaFiles.Count());
+        //}
+
+        //[Test]
+        //public void GetMedia_ZeroMediaFiles_ReturnsSuccessWithListContainingNoElements()
+        //{
+        //    const int expectedNumberOfListElements = 0;
+        //    var unitOfWorkMock = new Mock<IUnitOfWork>();
+        //    unitOfWorkMock.Setup(x => x.AudioFileRepository.Get()).Returns(new List<AudioFile>());
+
+        //     var userService = new Mock<IMediaService>();
+        //    userService.Setup(x => x.GetAllMedia()).Returns(new GetMediaResponse()
+        //    {
+        //        Success = true,
+        //        MediaFiles = new List<GetMediaResponseItem>()
+        //    });
+
+        //    _mediaController = new MediaController(userService.Object);
+        //    var response = _mediaController.GetMediaFiles();
+        //    var result = response as OkNegotiatedContentResult<GetMediaResponse>;
+
+        //    Assert.IsNotNull(result);
+        //    var resultContent = result.Content;
+        //    Assert.IsTrue(resultContent.Success);
+        //    Assert.AreEqual(expectedNumberOfListElements, resultContent.MediaFiles.Count());
+        //}
     }
 }

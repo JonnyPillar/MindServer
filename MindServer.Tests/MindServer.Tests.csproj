@@ -41,6 +41,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Everest">
+      <HintPath>..\packages\Everest.0.0.39.0\lib\net40\Everest.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Moq">
@@ -113,9 +116,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Services\AccountServiceTests.cs" />
+    <Compile Include="Services\MediaServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
+    <Content Include="Nuget - usage.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -124,6 +129,10 @@
     <ProjectReference Include="..\MindServer.Domain\MindServer.Domain.csproj">
       <Project>{2b7c47c3-d687-4cda-be7a-0f70e3c7b59c}</Project>
       <Name>MindServer.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MindServer.EF\MindServer.EF.csproj">
+      <Project>{6B911CAF-2EF7-4851-977D-C6A494CBC72D}</Project>
+      <Name>MindServer.EF</Name>
     </ProjectReference>
     <ProjectReference Include="..\MindServer.Services\MindServer.Services.csproj">
       <Project>{2E26BD4F-A688-467F-93EF-CEA6C92D0475}</Project>

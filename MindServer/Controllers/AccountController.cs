@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
+using MindServer.Domain.ActionResults;
 using MindServer.Domain.DataContracts;
 using MindServer.EF;
 using MindServer.Services.Interfaces;
@@ -27,21 +28,12 @@ namespace MindServer.Controllers
             if (!ModelState.IsValid) return BadRequest();
             try
             {
-                var sessionToken = await _accountService.UserSignUp(accountSignUpRequest);
-
-                if (string.IsNullOrEmpty(sessionToken))
+                var response = await _accountService.UserSignUp(accountSignUpRequest);
+                if (response.Success)
                 {
-                    return Ok(new AccountSignUpResponse
-                    {
-                        Success = false,
-                        SessionToken = string.Empty
-                    });
+                    return Ok(response);
                 }
-                return Ok(new AccountSignUpResponse
-                {
-                    Success = true,
-                    SessionToken = sessionToken
-                });
+                return this.BadRequestResponse(response);
             }
             catch (Exception e)
             {
@@ -54,24 +46,16 @@ namespace MindServer.Controllers
             if (!ModelState.IsValid) return BadRequest();
             try
             {
-                var sessionToken = await _accountService.UserLogIn(accountLogInRequest);
-                if (string.IsNullOrEmpty(sessionToken))
+                var response = await _accountService.UserLogIn(accountLogInRequest);
+                if (response.Success)
                 {
-                    return Ok(new AccountLogInResponse
-                    {
-                        Success = false,
-                        SessionToken = string.Empty
-                    });
+                    return Ok(response);
                 }
-                return Ok(new AccountLogInResponse
-                {
-                    Success = true,
-                    SessionToken = sessionToken
-                });
+                return this.BadRequestResponse(response);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return InternalServerError();
+                return InternalServerError(e);
             }
         }
 
@@ -80,12 +64,16 @@ namespace MindServer.Controllers
             if (!ModelState.IsValid) return BadRequest();
             try
             {
-                await _accountService.UserLogOut(accountLogOutRequest);
-                return Ok();
+                var response = await _accountService.UserLogOut(accountLogOutRequest);
+                if (response.Success)
+                {
+                    return Ok(response);
+                }
+                return this.BadRequestResponse(response);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return InternalServerError();
+                return InternalServerError(e);
             }
         }
     }

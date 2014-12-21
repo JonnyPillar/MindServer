@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
-using MindServer.Domain.Entities;
+using MindServer.Domain.DataContracts.AbstractDataContracts;
 
 namespace MindServer.Domain.DataContracts
 {
-    public struct GetMediaResponse
+    public class GetMediaResponse : BaseResponseContract
     {
-        public bool Success { get; set; }
-        public IEnumerable<AudioFile> MediaFiles { get; set; }
+        public GetMediaResponse()
+        {
+            MediaFiles = new List<GetMediaResponseItem>();
+        }
+
+        public List<GetMediaResponseItem> MediaFiles { get; set; }
     }
 }
