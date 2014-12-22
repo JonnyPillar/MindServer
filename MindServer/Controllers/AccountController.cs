@@ -25,7 +25,7 @@ namespace MindServer.Controllers
 
         public async Task<IHttpActionResult> SignUp(AccountSignUpRequest accountSignUpRequest)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (!ModelState.IsValid||string.IsNullOrWhiteSpace(accountSignUpRequest.Username) || string.IsNullOrWhiteSpace(accountSignUpRequest.Password)) return BadRequest();
             try
             {
                 var response = await _accountService.UserSignUp(accountSignUpRequest);
@@ -43,7 +43,7 @@ namespace MindServer.Controllers
 
         public async Task<IHttpActionResult> LogIn(AccountLogInRequest accountLogInRequest)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (!ModelState.IsValid || string.IsNullOrWhiteSpace(accountLogInRequest.EmailAddress) || string.IsNullOrWhiteSpace(accountLogInRequest.Password)) return BadRequest();
             try
             {
                 var response = await _accountService.UserLogIn(accountLogInRequest);
@@ -61,7 +61,7 @@ namespace MindServer.Controllers
 
         public async Task<IHttpActionResult> LogOut(AccountLogOutRequest accountLogOutRequest)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (!ModelState.IsValid || string.IsNullOrWhiteSpace(accountLogOutRequest.EmailAddress)) return BadRequest();
             try
             {
                 var response = await _accountService.UserLogOut(accountLogOutRequest);
