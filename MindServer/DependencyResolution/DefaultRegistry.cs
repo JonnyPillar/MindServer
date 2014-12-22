@@ -15,6 +15,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Data.Entity;
+using MindServer.EF;
 using MindServer.Services;
 using MindServer.Services.Interfaces;
 using MindServer.Services.Repository;
@@ -31,6 +33,7 @@ namespace MindServer.DependencyResolution
         {
             ObjectFactory.Initialize(cfg => cfg.Scan(scan =>
             {
+                For<DbContext>().Use<MindServerDbContext>();
                 For<IUnitOfWork>().Use<EFUnitOfWork>();
                 For<IUserRepository>().Use<UserRepository>();
                 For<IAudioFileRepository>().Use<AudioFileRepository>();
