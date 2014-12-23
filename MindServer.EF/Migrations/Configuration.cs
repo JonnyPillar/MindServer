@@ -13,7 +13,7 @@ namespace MindServer.EF.Migrations
 
         protected override void Seed(MindServerDbContext context)
         {
-            context.Users.Add(new User
+            context.Users.AddOrUpdate(new User
             {
                 Id = 1,
                 EmailAddress = "jonny@jonnypillar.co.uk",
@@ -24,8 +24,19 @@ namespace MindServer.EF.Migrations
                 IsLoggedIn = false,
                 SessionToken = "B802AD94EE7F4E80A808B8EF8E60C1A3B28619A7E36C352C326173FE6062853C"
             });
+            context.Users.AddOrUpdate(new User
+            {
+                Id = 2,
+                EmailAddress = "test@test.com",
+                DateOfBirth = DateTime.UtcNow,
+                IsAdmin = true,
+                PasswordHash = "71B58E6C23CB9247A0E9B96CCFF88E249B7AEDA9A4197E7BEA0E906F7A4986CC",
+                PasswordSalt = "5AC00FE09CF233D7577E410A8EF754930AD97D44B71DF02E970815DBB4747DE7",
+                IsLoggedIn = false,
+                SessionToken = "AF159851A2D82859A4EA783DC52C02CE5268AFA9E0A4AA1D068DE142DFAC7546"
+            });
 
-            context.AudioFiles.Add(
+            context.AudioFiles.AddOrUpdate(
                 new AudioFile
                 {
                     Id = 1,
@@ -37,7 +48,7 @@ namespace MindServer.EF.Migrations
                     MediaType = 0
                 });
 
-            context.AudioFiles.Add(
+            context.AudioFiles.AddOrUpdate(
                 new AudioFile
                 {
                     Id = 2,
@@ -49,7 +60,7 @@ namespace MindServer.EF.Migrations
                     MediaType = 0
                 });
 
-            context.AudioFiles.Add(
+            context.AudioFiles.AddOrUpdate(
                 new AudioFile
                 {
                     Id = 3,

@@ -19,8 +19,6 @@ namespace MindServer.Services
         {
             try
             {
-                
-
                 var mediaItems = _unitOfWork.AudioFileRepository.Get();
 
                 var response = new GetMediaResponse
