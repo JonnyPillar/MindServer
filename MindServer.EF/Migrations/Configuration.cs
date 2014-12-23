@@ -29,21 +29,36 @@ namespace MindServer.EF.Migrations
                 new AudioFile
                 {
                     Id = 1,
-                    FileName = "AudioFileOne.mp3",
+                    FileName = "AwardTour.mp3",
+                    FileUrl = "https://s3-eu-west-1.amazonaws.com/mindmediafiles/AwardTour.mp3",
+                    Description = "Award Tour",
+                    ThumbnailUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
+                    ImageUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
+                    MediaType = 0
                 });
 
             context.AudioFiles.Add(
                 new AudioFile
                 {
                     Id = 2,
-                    FileName = "AudioFileTwo.mp3",
+                    FileName = "TakeFive.mp3",
+                    FileUrl = "https://s3-eu-west-1.amazonaws.com/mindmediafiles/Dave+Brubeck+-+Take+Five.mp3",
+                    Description = "Take Five",
+                    ThumbnailUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
+                    ImageUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
+                    MediaType = 0
                 });
 
             context.AudioFiles.Add(
                 new AudioFile
                 {
                     Id = 3,
-                    FileName = "AudioFileThree.mp3",
+                    FileName = "ShakeItOut.mp3",
+                    FileUrl = "https://s3-eu-west-1.amazonaws.com/mindmediafiles/Taylor+Swift+-+Shake+It+Off.mp3",
+                    Description = "Shake It Out",
+                    ThumbnailUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
+                    ImageUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
+                    MediaType = 0
                 });
         }
     }
