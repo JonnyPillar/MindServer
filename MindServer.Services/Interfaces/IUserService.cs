@@ -6,7 +6,7 @@ namespace MindServer.Services.Interfaces
     public interface IUserService
     {
         void CheckUserExists(string emailAddress);
-        void CheckUserDoesntExist(AccountSignUpRequest accountSignUpRequest);
+        void CheckUserDoesntExist(AccountSignUpRequest request);
         User GetUser(AccountLogInRequest logInRequest);
     }
 }

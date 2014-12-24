@@ -22,19 +22,20 @@ namespace MindServer.Services
             if (!userExist) throw new UserDoesNotExistException();
         }
 
-        public void CheckUserDoesntExist(AccountSignUpRequest accountSignUpRequest)
+        public void CheckUserDoesntExist(AccountSignUpRequest request)
         {
             var userExist =
-                _unitOfWork.UserRepository.Exists(x => x.EmailAddress.Equals(accountSignUpRequest.Username));
+                _unitOfWork.UserRepository.Exists(x => x.EmailAddress.Equals(request.Username));
             if (userExist) throw new UserAlreadyExistsException();
         }
 
         public User GetUser(AccountLogInRequest logInRequest)
         {
-            var requestingUser =
-                _unitOfWork.UserRepository.Single(x => x.EmailAddress.Equals(logInRequest.EmailAddress));
-            if (requestingUser == null) throw new UserDoesNotExistException();
-            return requestingUser;
+            if (!_unitOfWork.UserRepository.Exists(x => x.EmailAddress.Equals(logInRequest.EmailAddress)))
+            {
+                throw new UserDoesNotExistException();
+            }
+            return _unitOfWork.UserRepository.Single(x => x.EmailAddress.Equals(logInRequest.EmailAddress));
         }
     }
 }
