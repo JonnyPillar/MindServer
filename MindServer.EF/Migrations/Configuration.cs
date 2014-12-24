@@ -41,7 +41,7 @@ namespace MindServer.EF.Migrations
                 {
                     Id = 1,
                     FileName = "AwardTour.mp3",
-                    FileUrl = "https://s3-eu-west-1.amazonaws.com/mindmediafiles/AwardTour.mp3",
+                    FileUrl = "http://mind.jonnypillar.co.uk/AwardTour.mp3",
                     Description = "Award Tour",
                     ThumbnailUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
                     ImageUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
@@ -53,7 +53,7 @@ namespace MindServer.EF.Migrations
                 {
                     Id = 2,
                     FileName = "TakeFive.mp3",
-                    FileUrl = "https://s3-eu-west-1.amazonaws.com/mindmediafiles/Dave+Brubeck+-+Take+Five.mp3",
+                    FileUrl = "http://mind.jonnypillar.co.uk/DaveBrubeckTakeFive.mp3",
                     Description = "Take Five",
                     ThumbnailUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
                     ImageUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
@@ -65,7 +65,7 @@ namespace MindServer.EF.Migrations
                 {
                     Id = 3,
                     FileName = "ShakeItOut.mp3",
-                    FileUrl = "https://s3-eu-west-1.amazonaws.com/mindmediafiles/Taylor+Swift+-+Shake+It+Off.mp3",
+                    FileUrl = "http://mind.jonnypillar.co.uk/TayloySwift-ShakeItOff.mp3",
                     Description = "Shake It Out",
                     ThumbnailUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
                     ImageUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
