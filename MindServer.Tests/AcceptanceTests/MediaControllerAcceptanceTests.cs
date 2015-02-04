@@ -1,4 +1,5 @@
-﻿using Everest;
+﻿using System;
+using Everest;
 using Everest.Pipeline;
 using Everest.Status;
 using MindServer.Tests.Properties;
@@ -15,6 +16,7 @@ namespace MindServer.Tests.AcceptanceTests
         [Test]
         public void Get_ValidRequest_ReturnsMediaItemJSON()
         {
+            Console.WriteLine("Base URL:" + Settings.Default.BaseUrl);
             var everest = new RestClient(Settings.Default.BaseUrl);
             var result = everest.Get(_mediaApiUrl + "getMediaFiles", new PipelineOption[]
             {
