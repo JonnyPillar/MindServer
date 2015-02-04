@@ -62,6 +62,10 @@
     <Compile Include="Migrations\201412211202114_Updated MediaEntity.Designer.cs">
       <DependentUpon>201412211202114_Updated MediaEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502041530315_Added title and duration to audio file.cs" />
+    <Compile Include="Migrations\201502041530315_Added title and duration to audio file.Designer.cs">
+      <DependentUpon>201502041530315_Added title and duration to audio file.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MindServerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201412211202114_Updated MediaEntity.resx">
       <DependentUpon>201412211202114_Updated MediaEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502041530315_Added title and duration to audio file.resx">
+      <DependentUpon>201502041530315_Added title and duration to audio file.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
