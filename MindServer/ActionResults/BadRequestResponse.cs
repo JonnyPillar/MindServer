@@ -7,7 +7,7 @@ using System.Web.Http;
 using MindServer.Domain.DataContracts.AbstractDataContracts;
 using Newtonsoft.Json;
 
-namespace MindServer.Domain.ActionResults
+namespace MindServer.ActionResults
 {
     public class BadRequestResponse : IHttpActionResult
     {

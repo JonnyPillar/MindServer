@@ -55,7 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionResults\BadRequestResponse.cs" />
     <Compile Include="DataContracts\AbstractDataContracts\BaseResponseContract.cs" />
     <Compile Include="DataContracts\AccountLogInRequest.cs" />
     <Compile Include="DataContracts\AccountLogInResponse.cs" />

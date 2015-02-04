@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
-using MindServer.Domain.ActionResults;
+using MindServer.ActionResults;
 using MindServer.Domain.DataContracts;
 using MindServer.EF;
 using MindServer.Services.Interfaces;
@@ -25,7 +25,7 @@ namespace MindServer.Controllers
 
         public async Task<IHttpActionResult> SignUp(AccountSignUpRequest accountSignUpRequest)
         {
-            if (!ModelState.IsValid||string.IsNullOrWhiteSpace(accountSignUpRequest.Username) || string.IsNullOrWhiteSpace(accountSignUpRequest.Password)) return BadRequest();
+            if (ValidateSignupParameters(accountSignUpRequest)) return BadRequest();
             try
             {
                 var response = await _accountService.UserSignUp(accountSignUpRequest);
@@ -43,7 +43,7 @@ namespace MindServer.Controllers
 
         public async Task<IHttpActionResult> LogIn(AccountLogInRequest accountLogInRequest)
         {
-            if (!ModelState.IsValid || string.IsNullOrWhiteSpace(accountLogInRequest.EmailAddress) || string.IsNullOrWhiteSpace(accountLogInRequest.Password)) return BadRequest();
+            if (ValidateLogInParameters(accountLogInRequest)) return BadRequest();
             try
             {
                 var response = await _accountService.UserLogIn(accountLogInRequest);
@@ -61,7 +61,7 @@ namespace MindServer.Controllers
 
         public async Task<IHttpActionResult> LogOut(AccountLogOutRequest accountLogOutRequest)
         {
-            if (!ModelState.IsValid || string.IsNullOrWhiteSpace(accountLogOutRequest.EmailAddress)) return BadRequest();
+            if (ValidateLogOutParameters(accountLogOutRequest)) return BadRequest();
             try
             {
                 var response = await _accountService.UserLogOut(accountLogOutRequest);
@@ -75,6 +75,21 @@ namespace MindServer.Controllers
             {
                 return InternalServerError(e);
             }
+        }
+
+        private bool ValidateLogOutParameters(AccountLogOutRequest accountLogOutRequest)
+        {
+            return !ModelState.IsValid || string.IsNullOrWhiteSpace(accountLogOutRequest.EmailAddress);
+        }
+
+        private bool ValidateSignupParameters(AccountSignUpRequest accountSignUpRequest)
+        {
+            return !ModelState.IsValid || string.IsNullOrWhiteSpace(accountSignUpRequest.Username) || string.IsNullOrWhiteSpace(accountSignUpRequest.Password);
+        }
+
+        private bool ValidateLogInParameters(AccountLogInRequest accountLogInRequest)
+        {
+            return !ModelState.IsValid || string.IsNullOrWhiteSpace(accountLogInRequest.EmailAddress) || string.IsNullOrWhiteSpace(accountLogInRequest.Password);
         }
     }
 }

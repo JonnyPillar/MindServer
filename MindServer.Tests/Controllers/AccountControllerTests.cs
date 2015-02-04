@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
+using MindServer.ActionResults;
 using MindServer.Controllers;
-using MindServer.Domain.ActionResults;
 using MindServer.Domain.DataContracts;
 using MindServer.Services.Interfaces;
 using Moq;
