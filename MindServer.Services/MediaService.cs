@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MindServer.Domain.DataContracts;
 using MindServer.Services.Interfaces;
 using MindServer.Services.Repository.Interfaces;
@@ -21,16 +22,12 @@ namespace MindServer.Services
             {
                 var mediaItems = _unitOfWork.AudioFileRepository.Get();
 
-                var response = new GetMediaResponse
-                {
-                    Success = true,
-                    MediaFiles = new List<GetMediaResponseItem>()
-                };
-
+                var response = new GetMediaResponse();
                 foreach (var mediaItem in mediaItems)
                 {
                     response.MediaFiles.Add(new GetMediaResponseItem(mediaItem));
                 }
+                response.Success = true;
 
                 return response;
             }
@@ -38,7 +35,6 @@ namespace MindServer.Services
             {
                 return new GetMediaResponse
                 {
-                    Success = false,
                     Message = string.Format("Internal Error: {0}", e.Message)
                 };
             }

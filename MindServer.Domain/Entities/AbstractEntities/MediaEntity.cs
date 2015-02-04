@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using MindServer.Domain.Enums;
 
 namespace MindServer.Domain.Entities.AbstractEntities
@@ -10,6 +11,12 @@ namespace MindServer.Domain.Entities.AbstractEntities
 
         [Required]
         public string FileUrl { get; set; }
+
+        [Required]
+        public string Title { get; set; }
+
+        [Required]
+        public TimeSpan Duration { get; set; }
 
         [Required]
         public string Description { get; set; }
