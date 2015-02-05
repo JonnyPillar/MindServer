@@ -43,7 +43,9 @@ namespace MindServer.EF.Migrations
                     Id = 1,
                     FileName = "AwardTour.mp3",
                     FileUrl = "http://mind.jonnypillar.co.uk/AwardTour.mp3",
+                    Title = "Award Tour",
                     Description = "Award Tour",
+                    Duration = new TimeSpan(0, 3, 00),
                     ThumbnailUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
                     ImageUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
                     MediaType = 0
@@ -55,7 +57,9 @@ namespace MindServer.EF.Migrations
                     Id = 2,
                     FileName = "TakeFive.mp3",
                     FileUrl = "http://mind.jonnypillar.co.uk/DaveBrubeckTakeFive.mp3",
+                    Title = "Take Five",
                     Description = "Take Five",
+                    Duration = new TimeSpan(0, 3, 00),
                     ThumbnailUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
                     ImageUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
                     MediaType = 0
@@ -67,7 +71,9 @@ namespace MindServer.EF.Migrations
                     Id = 3,
                     FileName = "ShakeItOut.mp3",
                     FileUrl = "http://mind.jonnypillar.co.uk/TayloySwift-ShakeItOff.mp3",
+                    Title = "Shake It Out",
                     Description = "Shake It Out",
+                    Duration = new TimeSpan(0, 3, 00),
                     ThumbnailUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
                     ImageUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
                     MediaType = 0

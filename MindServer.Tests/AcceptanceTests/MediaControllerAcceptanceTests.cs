@@ -14,14 +14,14 @@ namespace MindServer.Tests.AcceptanceTests
     [Category("AcceptanceTests")]
     public class MediaControllerAcceptanceTests
     {
-        private const string _mediaApiUrl = "api/media/";
+        private const string MediaApiUrl = "api/media/";
 
         [Test]
         public void Get_ValidRequest_ReturnsMediaItemJSON()
         {
             Console.WriteLine("Base URL:" + Settings.Default.BaseUrl);
             var everest = new RestClient(Settings.Default.BaseUrl);
-            var response = everest.Get(_mediaApiUrl + "getMediaFiles", new PipelineOption[]
+            var response = everest.Get(MediaApiUrl + "getMediaFiles", new PipelineOption[]
             {
                 ExpectStatus.OK
             });
@@ -29,9 +29,9 @@ namespace MindServer.Tests.AcceptanceTests
             Assert.IsFalse(string.IsNullOrWhiteSpace(response.Body));
             var deserialisedBody  = JsonConvert.DeserializeObject<GetMediaResponse>(response.Body);
 
-            //Assert.IsTrue(deserialisedBody.Success);
-            //Assert.IsNullOrEmpty(deserialisedBody.Message);
-            //Assert.IsNotEmpty(deserialisedBody.MediaFiles);
+            Assert.IsTrue(deserialisedBody.Success);
+            Assert.IsNullOrEmpty(deserialisedBody.Message);
+            Assert.IsNotEmpty(deserialisedBody.MediaFiles);
         }
     }
 }
