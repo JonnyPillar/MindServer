@@ -34,7 +34,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-
   <ItemGroup>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
@@ -128,6 +127,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="App.Debug.Config" >
+      <DependentUpon>App.config</DependentUpon>
+    </None>
     <None Include="App.Release.Config">
       <DependentUpon>App.config</DependentUpon>
     </None>
@@ -167,9 +169,9 @@
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
   <UsingTask TaskName="TransformXml" AssemblyFile="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v12.0\Web\Microsoft.Web.Publishing.Tasks.dll" />
-    <Target Name="AfterBuild">
-      <TransformXml Source="App.config"
-                    Transform="App.$(Configuration).config"
-                    Destination="$(OutputPath)\$(AssemblyName).$(OutputType).config" />
-    </Target>
+  <Target Name="AfterBuild">
+    <TransformXml Source="App.config"
+              Transform="App.$(Configuration).config"
+              Destination="App.config" />
+  </Target>
 </Project>
