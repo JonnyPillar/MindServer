@@ -24,7 +24,7 @@ namespace MindServer.Tests.Controllers
         private AccountController _accountController;
 
         [Test]
-        public async Task LogIn_AccountServiceReturnesUnSuccessFullResponse_BadRequestResonseReturned()
+        public async void LogIn_AccountServiceReturnesUnSuccessFullResponse_BadRequestResonseReturned()
         {
             _mockAccountService.Setup(x => x.UserLogIn(It.IsAny<AccountLogInRequest>()))
                  .ReturnsAsync(new AccountLogInResponse
@@ -40,7 +40,7 @@ namespace MindServer.Tests.Controllers
 
             var response = await _accountController.LogIn(accountSignUp);
             var responseContent = response;
-
+             
             Assert.IsInstanceOf<BadRequestResponse>(responseContent);
         }
 
