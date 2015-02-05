@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Security.Cryptography;
 using Everest;
 using Everest.Pipeline;
 using Everest.Status;
+using MindServer.Domain.DataContracts;
 using MindServer.Tests.Properties;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace MindServer.Tests.AcceptanceTests
@@ -11,19 +14,24 @@ namespace MindServer.Tests.AcceptanceTests
     [Category("AcceptanceTests")]
     public class MediaControllerAcceptanceTests
     {
-        private string _mediaApiUrl = "api/media/";
+        private const string _mediaApiUrl = "api/media/";
 
         [Test]
         public void Get_ValidRequest_ReturnsMediaItemJSON()
         {
             Console.WriteLine("Base URL:" + Settings.Default.BaseUrl);
             var everest = new RestClient(Settings.Default.BaseUrl);
-            var result = everest.Get(_mediaApiUrl + "getMediaFiles", new PipelineOption[]
+            var response = everest.Get(_mediaApiUrl + "getMediaFiles", new PipelineOption[]
             {
                 ExpectStatus.OK
             });
 
-            Assert.IsFalse(string.IsNullOrWhiteSpace(result.Body));
+            Assert.IsFalse(string.IsNullOrWhiteSpace(response.Body));
+            var deserialisedBody  = JsonConvert.DeserializeObject<GetMediaResponse>(response.Body);
+
+            Assert.IsTrue(deserialisedBody.Success);
+            Assert.IsNullOrEmpty(deserialisedBody.Message);
+            Assert.IsNotEmpty(deserialisedBody.MediaFiles);
         }
     }
 }

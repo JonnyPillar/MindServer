@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using MindServer.Domain.DataContracts;
 using MindServer.Services.Interfaces;
 using MindServer.Services.Repository.Interfaces;
