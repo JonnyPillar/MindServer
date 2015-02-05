@@ -13,7 +13,7 @@ namespace MindServer.EF
         public virtual IDbSet<User> Users { get; set; }
         public virtual IDbSet<AudioFile> AudioFiles { get; set; }
 
-        protected virtual void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>();
             modelBuilder.Entity<AudioFile>();
