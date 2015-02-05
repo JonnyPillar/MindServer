@@ -35,13 +35,13 @@ namespace MindServer.Domain.DataContracts
         {
         }
 
-        private string FileName { get; set; }
-        private string FileUrl { get; set; }
-        private string Description { get; set; }
-        private string ThumbnailUrl { get; set; }
-        private string ImageUrl { get; set; }
-        private MediaType MediaType { get; set; }
-        private string Title { get; set; }
-        private string Duration { get; set; }
+        public string FileName { get; set; }
+        public string FileUrl { get; set; }
+        public string Description { get; set; }
+        public string ThumbnailUrl { get; set; }
+        public string ImageUrl { get; set; }
+        public MediaType MediaType { get; set; }
+        public string Title { get; set; }
+        public string Duration { get; set; }
     }
 }
