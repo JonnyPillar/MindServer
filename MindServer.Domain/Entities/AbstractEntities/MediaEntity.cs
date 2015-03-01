@@ -28,6 +28,9 @@ namespace MindServer.Domain.Entities.AbstractEntities
         public string ImageUrl { get; set; }
 
         [Required]
+        public string BaseColour { get; set; }
+
+        [Required]
         public MediaType MediaType { get; set; }
     }
 }

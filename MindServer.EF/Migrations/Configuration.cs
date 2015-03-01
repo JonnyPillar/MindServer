@@ -48,6 +48,7 @@ namespace MindServer.EF.Migrations
                     Duration = new TimeSpan(0, 3, 00),
                     ThumbnailUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
                     ImageUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
+                    BaseColour = "Pink",
                     MediaType = 0
                 });
 
@@ -62,6 +63,7 @@ namespace MindServer.EF.Migrations
                     Duration = new TimeSpan(0, 3, 00),
                     ThumbnailUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
                     ImageUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
+                    BaseColour = "Purple",
                     MediaType = 0
                 });
 
@@ -76,7 +78,8 @@ namespace MindServer.EF.Migrations
                     Duration = new TimeSpan(0, 3, 00),
                     ThumbnailUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
                     ImageUrl = "http://mind.jonnypillar.co.uk/Windows_Media_Player_alt.png",
-                    MediaType = 0
+                    BaseColour = "Blue",
+                    MediaType = 0,
                 });
         }
     }
