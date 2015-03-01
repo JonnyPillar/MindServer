@@ -21,6 +21,9 @@ namespace MindServer
                 ReferenceLoopHandling.Ignore;
             GlobalConfiguration.Configuration.Formatters.Remove(
                 GlobalConfiguration.Configuration.Formatters.XmlFormatter);
+                
+                var migrator = new DbMigrator(new MindServer.EF.Migrations.Configuration());  
+                migrator.Update();  
         }
     }
 }
