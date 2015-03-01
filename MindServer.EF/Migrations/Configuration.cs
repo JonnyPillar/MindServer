@@ -4,7 +4,7 @@ using MindServer.Domain.Entities;
 
 namespace MindServer.EF.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<MindServerDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<MindServerDbContext>
     {
         public Configuration()
         {
