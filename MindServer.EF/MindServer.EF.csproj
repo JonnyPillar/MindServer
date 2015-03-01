@@ -66,6 +66,10 @@
     <Compile Include="Migrations\201502041530315_Added title and duration to audio file.Designer.cs">
       <DependentUpon>201502041530315_Added title and duration to audio file.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503012011570_Added Base Colour to Media Entity.cs" />
+    <Compile Include="Migrations\201503012011570_Added Base Colour to Media Entity.Designer.cs">
+      <DependentUpon>201503012011570_Added Base Colour to Media Entity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MindServerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502041530315_Added title and duration to audio file.resx">
       <DependentUpon>201502041530315_Added title and duration to audio file.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503012011570_Added Base Colour to Media Entity.resx">
+      <DependentUpon>201503012011570_Added Base Colour to Media Entity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
