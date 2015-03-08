@@ -8,5 +8,6 @@ namespace MindServer.Services.Interfaces
         void CheckUserExists(string emailAddress);
         void CheckUserDoesntExist(AccountSignUpRequest request);
         User GetUser(AccountLogInRequest logInRequest);
+        User GetAdminUser(AdminLogInRequest logInRequest);
     }
 }

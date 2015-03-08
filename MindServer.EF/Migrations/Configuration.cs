@@ -30,7 +30,7 @@ namespace MindServer.EF.Migrations
                 Id = 2,
                 EmailAddress = "test@test.com",
                 DateOfBirth = DateTime.UtcNow,
-                IsAdmin = true,
+                IsAdmin = false,
                 PasswordHash = "71B58E6C23CB9247A0E9B96CCFF88E249B7AEDA9A4197E7BEA0E906F7A4986CC",
                 PasswordSalt = "5AC00FE09CF233D7577E410A8EF754930AD97D44B71DF02E970815DBB4747DE7",
                 IsLoggedIn = false,

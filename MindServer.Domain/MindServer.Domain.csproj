@@ -62,6 +62,8 @@
     <Compile Include="DataContracts\AccountLogOutResponse.cs" />
     <Compile Include="DataContracts\AccountSignUpRequest.cs" />
     <Compile Include="DataContracts\AccountSignUpResponse.cs" />
+    <Compile Include="DataContracts\AdminLogInRequest.cs" />
+    <Compile Include="DataContracts\AdminLogInResponse.cs" />
     <Compile Include="DataContracts\GetMediaResponse.cs" />
     <Compile Include="DataContracts\GetMediaResponseItem.cs" />
     <Compile Include="Entities\AbstractEntities\BaseEntity.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Exceptions\UserAlreadyExistsException.cs" />
     <Compile Include="Exceptions\UserAuthenticationException.cs" />
     <Compile Include="Exceptions\UserDoesNotExistException.cs" />
+    <Compile Include="Exceptions\UserNotAdminException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

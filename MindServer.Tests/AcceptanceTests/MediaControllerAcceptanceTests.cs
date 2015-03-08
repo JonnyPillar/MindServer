@@ -16,7 +16,7 @@ namespace MindServer.Tests.AcceptanceTests
     {
         private const string MediaApiUrl = "api/media/";
 
-        //[Test]
+        [Test]
         public void Get_ValidRequest_ReturnsMediaItemJSON()
         {
             Console.WriteLine("Base URL:" + Settings.Default.BaseUrl);

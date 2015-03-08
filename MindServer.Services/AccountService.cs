@@ -11,8 +11,8 @@ namespace MindServer.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly IUserService _userService;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IUserService _userService;
 
         public AccountService(IUserService userService, IUnitOfWork unitOfWork)
         {
@@ -102,6 +102,30 @@ namespace MindServer.Services
             return authenticatingUser;
         }
 
+        public async Task<AdminLogInResponse> AdminLogin(AdminLogInRequest logInRequest)
+        {
+            try
+            {
+                var user = _userService.GetAdminUser(logInRequest);
+
+                ValidateUserPassword(logInRequest.Password, user);
+
+                return new AdminLogInResponse
+                {
+                    Success = true,
+                    Message = "Log In Successful"
+                };
+            }
+            catch (MindServerException e)
+            {
+                return new AdminLogInResponse
+                {
+                    Success = false,
+                    Message = e.Message,
+                };
+            }
+        }
+
         private async Task LogUserOut(AccountLogOutRequest logOutRequest)
         {
             var requestingUser =
@@ -113,16 +137,21 @@ namespace MindServer.Services
 
         private async Task<string> LogUserInAndGetSessionToken(AccountLogInRequest logInRequest, User requestingUser)
         {
-            var passwordHashUtil = new PasswordHashUtil(logInRequest.Password, requestingUser.PasswordSalt);
-            if (!requestingUser.PasswordHash.Equals(passwordHashUtil.PasswordHash))
-            {
-                throw new UserAuthenticationException();
-            }
+            ValidateUserPassword(logInRequest.Password, requestingUser);
 
             var sessionToken = UpdateUserToLoggedIn(requestingUser);
 
             await _unitOfWork.SaveChangesAsync();
             return sessionToken;
+        }
+
+        private static void ValidateUserPassword(string password, User requestingUser)
+        {
+            var passwordHashUtil = new PasswordHashUtil(password, requestingUser.PasswordSalt);
+            if (!requestingUser.PasswordHash.Equals(passwordHashUtil.PasswordHash))
+            {
+                throw new UserAuthenticationException();
+            }
         }
 
         private static string UpdateUserToLoggedIn(User requestingUser)

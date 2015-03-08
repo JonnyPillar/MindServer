@@ -37,5 +37,16 @@ namespace MindServer.Services
             }
             return _unitOfWork.UserRepository.Single(x => x.EmailAddress.Equals(logInRequest.EmailAddress));
         }
+
+        public User GetAdminUser(AdminLogInRequest logInRequest)
+        {
+            if (!_unitOfWork.UserRepository.Exists(x => x.EmailAddress.Equals(logInRequest.EmailAddress)))
+            {
+                throw new UserDoesNotExistException();
+            }
+            var user = _unitOfWork.UserRepository.Single(x => x.EmailAddress.Equals(logInRequest.EmailAddress));
+            if (!user.IsAdmin) throw new UserNotAdminException();
+            return user;
+        }
     }
 }

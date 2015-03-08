@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Newtonsoft.Json;
-using System.Data.Entity.Migrations;
 
 namespace MindServer
 {
@@ -22,9 +21,9 @@ namespace MindServer
                 ReferenceLoopHandling.Ignore;
             GlobalConfiguration.Configuration.Formatters.Remove(
                 GlobalConfiguration.Configuration.Formatters.XmlFormatter);
-                
-                var migrator = new DbMigrator(new MindServer.EF.Migrations.Configuration());  
-                migrator.Update();  
+
+            //var migrator = new DbMigrator(new MindServer.EF.Migrations.Configuration());  
+            //migrator.Update();  
         }
     }
 }

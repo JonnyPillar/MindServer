@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Web.Http.Results;
 using MindServer.ActionResults;
 using MindServer.Controllers;
@@ -27,10 +26,10 @@ namespace MindServer.Tests.Controllers
         public async void LogIn_AccountServiceReturnesUnSuccessFullResponse_BadRequestResonseReturned()
         {
             _mockAccountService.Setup(x => x.UserLogIn(It.IsAny<AccountLogInRequest>()))
-                 .ReturnsAsync(new AccountLogInResponse
-                 {
-                     Success = false
-                 });
+                .ReturnsAsync(new AccountLogInResponse
+                {
+                    Success = false
+                });
 
             var accountSignUp = new AccountLogInRequest
             {
@@ -40,7 +39,7 @@ namespace MindServer.Tests.Controllers
 
             var response = await _accountController.LogIn(accountSignUp);
             var responseContent = response;
-             
+
             Assert.IsInstanceOf<BadRequestResponse>(responseContent);
         }
 

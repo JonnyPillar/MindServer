@@ -27,6 +27,126 @@ namespace MindServer.Tests.Services
         private Mock<IUnitOfWork> _mockUnitOfWork;
 
         [Test]
+        public void AdminLogin_PasswordDoesNotMatchPasswordOnRecord_ResponseContainsErrorMessage()
+        {
+            _mockUserService.Setup(x => x.GetAdminUser(It.IsAny<AdminLogInRequest>())).Returns(new User
+            {
+                PasswordSalt = "5AC00FE09CF233D7577E410A8EF754930AD97D44B71DF02E970815DBB4747DE7",
+                PasswordHash = "71B58E6C23CB9247A0E9B96CCFF88E249B7AEDA9A4197E7BEA0E906F7A4986CC",
+                SessionToken = "AF159851A2D82859A4EA783DC52C02CE5268AFA9E0A4AA1D068DE142DFAC7546"
+            });
+
+            var accountSignUpRequest = new AdminLogInRequest
+            {
+                EmailAddress = "knownUser@test.com",
+                Password = "123123",
+            };
+
+            var result = _accountService.AdminLogin(accountSignUpRequest);
+            var resultContent = result.Result;
+
+            Assert.IsNotNullOrEmpty(resultContent.Message);
+        }
+
+        [Test]
+        public void AdminLogin_PasswordDoesNotMatchPasswordOnRecord_ResponseSuccessIsFalse()
+        {
+            _mockUserService.Setup(x => x.GetAdminUser(It.IsAny<AdminLogInRequest>())).Returns(new User
+            {
+                PasswordSalt = "5AC00FE09CF233D7577E410A8EF754930AD97D44B71DF02E970815DBB4747DE7",
+                PasswordHash = "71B58E6C23CB9247A0E9B96CCFF88E249B7AEDA9A4197E7BEA0E906F7A4986CC",
+                SessionToken = "AF159851A2D82859A4EA783DC52C02CE5268AFA9E0A4AA1D068DE142DFAC7546"
+            });
+
+            var accountSignUpRequest = new AdminLogInRequest
+            {
+                EmailAddress = "knownUser@test.com",
+                Password = "123123",
+            };
+
+            var result = _accountService.AdminLogin(accountSignUpRequest);
+            var resultContent = result.Result;
+
+            Assert.IsFalse(resultContent.Success);
+        }
+
+        [Test]
+        public void AdminLogin_PasswordMatchesPasswordOnRecord_ResponseSuccessIsTrue()
+        {
+            _mockUserService.Setup(x => x.GetAdminUser(It.IsAny<AdminLogInRequest>())).Returns(new User
+            {
+                PasswordSalt = "5AC00FE09CF233D7577E410A8EF754930AD97D44B71DF02E970815DBB4747DE7",
+                PasswordHash = "71B58E6C23CB9247A0E9B96CCFF88E249B7AEDA9A4197E7BEA0E906F7A4986CC",
+                SessionToken = "AF159851A2D82859A4EA783DC52C02CE5268AFA9E0A4AA1D068DE142DFAC7546"
+            });
+
+            var accountSignUpRequest = new AdminLogInRequest
+            {
+                EmailAddress = "knownUser@test.com",
+                Password = "123456",
+            };
+
+            var result = _accountService.AdminLogin(accountSignUpRequest);
+            var resultContent = result.Result;
+
+            Assert.IsTrue(resultContent.Success);
+        }   
+
+        [Test]
+        public void AdminLogin_UserDoesntExist_ResposneContainsMessage()
+        {
+            _mockUserService.Setup(x => x.GetAdminUser(It.IsAny<AdminLogInRequest>()))
+                .Throws(new UserDoesNotExistException());
+
+            var accountSignUpRequest = new AdminLogInRequest
+            {
+                EmailAddress = "unknownUser@test.com",
+                Password = "123123",
+            };
+
+            var result = _accountService.AdminLogin(accountSignUpRequest);
+            var resultContent = result.Result;
+
+            Assert.IsNotNullOrEmpty(resultContent.Message);
+        }
+
+        [Test]
+        public void AdminLogin_UserDoesntExist_ResposneReturnedWithSuccessAsFalse()
+        {
+            _mockUserService.Setup(x => x.GetAdminUser(It.IsAny<AdminLogInRequest>()))
+                .Throws(new UserDoesNotExistException());
+
+            var accountSignUpRequest = new AdminLogInRequest
+            {
+                EmailAddress = "unknownUser@test.com",
+                Password = "123123",
+            };
+
+            var result = _accountService.AdminLogin(accountSignUpRequest);
+            var resultContent = result.Result;
+
+            Assert.IsFalse(resultContent.Success);
+        }
+
+        [Test]
+        public void AuthenticateSessionToken_InValidSessionToken_InvalidSessionTokenExceptionNotThrown()
+        {
+            _mockUnitOfWork.Setup(x => x.UserRepository.Single(It.IsAny<Expression<Func<User, bool>>>()))
+                .Returns(default(User));
+
+            Assert.Throws<InvalidSessionTokenException>(() => _accountService.AuthenticateSessionToken("1231231323"));
+        }
+
+        [Test]
+        public void AuthenticateSessionToken_ValidSessionToken_InvalidSessionTokenExceptionNotThrown()
+        {
+            _mockUnitOfWork.Setup(x => x.UserRepository.Single(It.IsAny<Expression<Func<User, bool>>>()))
+                .Returns(new User());
+
+            Assert.DoesNotThrow(() => _accountService.AuthenticateSessionToken(""));
+        }
+
+        [Test]
         public void UserLogIn_PasswordDoesNotMatchPasswordOnRecord_ResponseContainsErrorMessage()
         {
             _mockUserService.Setup(x => x.GetUser(It.IsAny<AccountLogInRequest>())).Returns(new User
@@ -91,25 +211,6 @@ namespace MindServer.Tests.Services
 
             Assert.IsFalse(resultContent.Success);
         }
-
-        //[Test]
-        //public void UserLogIn_PasswordDoesNotMatchPasswordOnRecord_UserAuthenticationErrorThrown()
-        //{
-        //    _mockUserService.Setup(x => x.GetUser(It.IsAny<AccountLogInRequest>())).Returns(new User
-        //    {
-        //        PasswordSalt = "5AC00FE09CF233D7577E410A8EF754930AD97D44B71DF02E970815DBB4747DE7",
-        //        PasswordHash = "71B58E6C23CB9247A0E9B96CCFF88E249B7AEDA9A4197E7BEA0E906F7A4986CC",
-        //        SessionToken = "AF159851A2D82859A4EA783DC52C02CE5268AFA9E0A4AA1D068DE142DFAC7546"
-        //    });
-
-        //    var accountSignUpRequest = new AccountLogInRequest
-        //    {
-        //        EmailAddress = "knownUser@test.com",
-        //        Password = "123123",
-        //    };
-
-        //    Assert.Throws<UserAuthenticationException>(() => _accountService.UserLogIn(accountSignUpRequest));
-        //}
 
         [Test]
         public void UserLogIn_PasswordMatchesPasswordOnRecord_ResponseContainsANewSessionToken()
@@ -234,6 +335,77 @@ namespace MindServer.Tests.Services
         }
 
         [Test]
+        public void UserLogOut_UserDoesntExist_ResposneContainsMessage()
+        {
+            _mockUserService.Setup(x => x.CheckUserExists(It.IsAny<string>()))
+                .Throws(new UserDoesNotExistException());
+
+            var accountSignUpRequest = new AccountLogOutRequest
+            {
+                EmailAddress = "unknownUser@test.com",
+            };
+
+            var result = _accountService.UserLogOut(accountSignUpRequest);
+            var resultContent = result.Result;
+
+            Assert.IsNotNullOrEmpty(resultContent.Message);
+        }
+
+        [Test]
+        public void UserLogOut_UserDoesntExist_ResposneSuccessIsFalse()
+        {
+            _mockUserService.Setup(x => x.CheckUserExists(It.IsAny<string>()))
+                .Throws(new UserDoesNotExistException());
+
+            var accountSignUpRequest = new AccountLogOutRequest
+            {
+                EmailAddress = "unknownUser@test.com",
+            };
+
+            var result = _accountService.UserLogOut(accountSignUpRequest);
+            var resultContent = result.Result;
+
+            Assert.IsFalse(resultContent.Success);
+        }
+
+        [Test]
+        public void UserLogOut_ValidUser_DbSaveIsCalled()
+        {
+            _mockUserService.Setup(x => x.CheckUserExists(It.IsAny<string>()));
+
+            _mockUnitOfWork.Setup(x => x.UserRepository.Single(It.IsAny<Expression<Func<User, bool>>>()))
+                .Returns(new User());
+
+            var accountSignUpRequest = new AccountLogOutRequest
+            {
+                EmailAddress = "unknownUser@test.com",
+            };
+
+            _accountService.UserLogOut(accountSignUpRequest);
+
+
+            _mockUnitOfWork.Verify(x => x.SaveChangesAsync());
+        }
+
+        [Test]
+        public void UserLogOut_ValidUser_ResposneSuccessIsTrue()
+        {
+            _mockUserService.Setup(x => x.CheckUserExists(It.IsAny<string>()));
+            _mockUnitOfWork.Setup(x => x.UserRepository.Single(It.IsAny<Expression<Func<User, bool>>>()))
+                .Returns(new User());
+
+            var accountSignUpRequest = new AccountLogOutRequest
+            {
+                EmailAddress = "unknownUser@test.com",
+            };
+
+            var result = _accountService.UserLogOut(accountSignUpRequest);
+            var resultContent = result.Result;
+
+            Assert.IsTrue(resultContent.Success);
+        }
+
+        [Test]
         public void UserSignUp_SignUpSuccesful_ResponseReturnedContainsSessionToken()
         {
             _mockUserService.Setup(x => x.CheckUserDoesntExist(It.IsAny<AccountSignUpRequest>()));
@@ -327,166 +499,5 @@ namespace MindServer.Tests.Services
 
             Assert.IsNullOrEmpty(resultContent.SessionToken);
         }
-
-        [Test]
-        public void UserLogOut_UserDoesntExist_ResposneSuccessIsFalse()
-        {
-            _mockUserService.Setup(x => x.CheckUserExists(It.IsAny<string>()))
-                .Throws(new UserDoesNotExistException());
-
-            var accountSignUpRequest = new AccountLogOutRequest()
-            {
-                EmailAddress = "unknownUser@test.com",
-            };
-
-            var result = _accountService.UserLogOut(accountSignUpRequest);
-            var resultContent = result.Result;
-
-            Assert.IsFalse(resultContent.Success);
-        }
-
-        [Test]
-        public void UserLogOut_UserDoesntExist_ResposneContainsMessage()
-        {
-            _mockUserService.Setup(x => x.CheckUserExists(It.IsAny<string>()))
-                .Throws(new UserDoesNotExistException());
-
-            var accountSignUpRequest = new AccountLogOutRequest
-            {
-                EmailAddress = "unknownUser@test.com",
-            };
-
-            var result = _accountService.UserLogOut(accountSignUpRequest);
-            var resultContent = result.Result;
-
-            Assert.IsNotNullOrEmpty(resultContent.Message);
-        }
-
-        [Test]
-        public void UserLogOut_ValidUser_DbSaveIsCalled()
-        {
-            _mockUserService.Setup(x => x.CheckUserExists(It.IsAny<string>()));
-
-            _mockUnitOfWork.Setup(x => x.UserRepository.Single(It.IsAny<Expression<Func<User, bool>>>()))
-                .Returns(new User());
-
-            var accountSignUpRequest = new AccountLogOutRequest
-            {
-                EmailAddress = "unknownUser@test.com",
-            };
-
-            _accountService.UserLogOut(accountSignUpRequest);
-
-
-            _mockUnitOfWork.Verify(x => x.SaveChangesAsync());
-        }
-
-        [Test]
-        public void UserLogOut_ValidUser_ResposneSuccessIsTrue()
-        {
-            _mockUserService.Setup(x => x.CheckUserExists(It.IsAny<string>()));
-            _mockUnitOfWork.Setup(x => x.UserRepository.Single(It.IsAny<Expression<Func<User, bool>>>()))
-                .Returns(new User());
-
-            var accountSignUpRequest = new AccountLogOutRequest
-            {
-                EmailAddress = "unknownUser@test.com",
-            };
-
-            var result = _accountService.UserLogOut(accountSignUpRequest);
-            var resultContent = result.Result;
-
-            Assert.IsTrue(resultContent.Success);
-        }
-
-        [Test]
-        public void AuthenticateSessionToken_ValidSessionToken_InvalidSessionTokenExceptionNotThrown()
-        {
-            _mockUnitOfWork.Setup(x => x.UserRepository.Single(It.IsAny<Expression<Func<User, bool>>>()))
-                .Returns(new User());
-
-            Assert.DoesNotThrow(() => _accountService.AuthenticateSessionToken(""));
-        }
-
-        [Test]
-        public void AuthenticateSessionToken_InValidSessionToken_InvalidSessionTokenExceptionNotThrown()
-        {
-            _mockUnitOfWork.Setup(x => x.UserRepository.Single(It.IsAny<Expression<Func<User, bool>>>())).Returns(default(User));
-
-            Assert.Throws<InvalidSessionTokenException>(() => _accountService.AuthenticateSessionToken("1231231323"));
-        }
-
-        //[SetUp]
-        //public void SetUp()
-        //{
-        //    _mindServerDbContext = MockRepository.GenerateStub<MindServerDbContext>();
-        //    _mindServerDbContext.Users = new FakeDbSet<User>();
-
-        //    //_unitOfWork = MockRepository.GenerateStub<IUnitOfWork>();
-        //    //_unitOfWork.Stub(x => x.UserRepository).Return(_userRepository);
-
-        //    _userRepository = MockRepository.GenerateStub<IUserRepository>();
-
-        //    _unitOfWork = new EFUnitOfWork(_mindServerDbContext);
-        //    _accountService = new AccountService(_unitOfWork);
-        //}
-
-        //private IUnitOfWork _unitOfWork;
-        //private MindServerDbContext _mindServerDbContext;
-        //private IAccountService _accountService;
-        //private IUserRepository _userRepository;
-
-        //[Test]
-        //public void UserSignUp_UserAlreadyExists_ReturnsResponseObjectContainsEmptySessionToken()
-        //{
-        //    var request = new AccountSignUpRequest
-        //    {
-        //        Username = "existingUser@test.com",
-        //        Password = "123456"
-        //    };
-
-        //    var responseTask = _accountService.AccountSignUp(request);
-        //    var response = responseTask.Result;
-
-        //    Assert.IsNullOrEmpty(response.SessionToken);
-        //}
-
-        //[Test]
-        //public void UserSignUp_UserAlreadyExists_ReturnsResponseObjectContainsErrorMessage()
-        //{
-        //    var request = new AccountSignUpRequest
-        //    {
-        //        Username = "existingUser@test.com",
-        //        Password = "123456"
-        //    };
-
-        //    var responseTask = _accountService.AccountSignUp(request);
-        //    var response = responseTask.Result;
-
-        //    Assert.IsNotNullOrEmpty(response.ResponseContract);
-        //}
-
-        //[Test]
-        //public void UserSignUp_UserAlreadyExists_ReturnsResponseObjectWithSuccessFalse()
-        //{
-        //    _mindServerDbContext.Users.Add(new User
-        //    {
-        //        EmailAddress = "existingUser@test.com"
-        //    });
-
-        //    //_unitOfWork.UserRepository.Stub(x => x.Exists(It.IsAny<Expression<Func<User, bool>>>()))
-        //    //    .Return(true);
-
-        //    var request = new AccountSignUpRequest
-        //    {
-        //        Username = "existingUser@test.com",
-        //        Password = "123456"
-        //    };
-
-        //    var responseTask = _accountService.AccountSignUp(request);
-        //    var response = responseTask.Result;
-
-        //    Assert.IsFalse(response.Success);
-        //}
     }
 }
