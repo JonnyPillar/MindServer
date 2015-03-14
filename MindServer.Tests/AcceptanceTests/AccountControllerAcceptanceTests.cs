@@ -14,7 +14,7 @@ namespace MindServer.Tests.AcceptanceTests
     [Category("AcceptanceTests")]
     public class AccountControllerAcceptanceTests
     {
-        private const string MediaApiUrl = "admin/login";
+        private const string MediaApiUrl = "api/admin/login";
 
         //[Test]
         public void Index_AdminUserLogIn_OkHttpStatusCodeAndSuccessResponse()

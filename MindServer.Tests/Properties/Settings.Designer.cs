@@ -25,7 +25,7 @@ namespace MindServer.Tests.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/MindServer/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://mind-1.apphb.com/")]
         public string BaseUrl {
             get {
                 return ((string)(this["BaseUrl"]));
