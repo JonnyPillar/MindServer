@@ -67,18 +67,18 @@ namespace MindServer.Tests.Filters
         }
 
 
-        [Test]
-        public void OnAuthorisation_NonLocalRequest_RedirectedToHttps()
-        {
-            //Arrange
-            _request.Setup(x => x.IsLocal).Returns(false);
-            //request.IsLocal.Returns(false);
-            var sut = new RequreSecureConnectionFilter();
+        //[Test]
+        //public void OnAuthorisation_NonLocalRequest_RedirectedToHttps()
+        //{
+        //    //Arrange
+        //    _request.Setup(x => x.IsLocal).Returns(false);
+        //    //request.IsLocal.Returns(false);
+        //    var sut = new RequreSecureConnectionFilter();
 
-            // Act && Assert 
-            // here we check if controll is passed down to RequireHttpsAttribute code
-            // and we are not testing for Microsoft code.
-            Assert.Throws<InvalidOperationException>(() => sut.OnAuthorization(_filterContext));
-        }
+        //    // Act && Assert 
+        //    // here we check if controll is passed down to RequireHttpsAttribute code
+        //    // and we are not testing for Microsoft code.
+        //    Assert.Throws<InvalidOperationException>(() => sut.OnAuthorization(_filterContext));
+        //}
     }
 }
