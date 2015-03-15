@@ -13,8 +13,6 @@ namespace MindServer.Controllers.Api
             _mediaService = mediaService;
         }
 
-        [HttpGet]
-        [Route("GetMediaFiles")]
         public IHttpActionResult GetMediaFiles()
         {
             try
