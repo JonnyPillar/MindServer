@@ -1,5 +1,6 @@
 using System.Data.Entity;
 using MindServer.Domain.Entities;
+using MindServer.Domain.Entities.AbstractEntities;
 
 namespace MindServer.EF
 {
@@ -18,7 +19,5 @@ namespace MindServer.EF
             modelBuilder.Entity<User>();
             modelBuilder.Entity<AudioFile>();
         }
-
-        public System.Data.Entity.DbSet<MindServer.Domain.Entities.AbstractEntities.MediaEntity> MediaEntities { get; set; }
     }
 }

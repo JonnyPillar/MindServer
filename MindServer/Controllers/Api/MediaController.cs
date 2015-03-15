@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Http;
-using MindServer.Domain.Entities.AbstractEntities;
 using MindServer.Services.Interfaces;
 
 namespace MindServer.Controllers.Api
