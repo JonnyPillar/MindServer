@@ -2,7 +2,7 @@
 using MindServer.Domain.Entities.AbstractEntities;
 using MindServer.Domain.Enums;
 
-namespace MindServer.Domain.DataContracts
+namespace MindServer.Services.DataContracts
 {
     public class GetMediaResponseItem
     {

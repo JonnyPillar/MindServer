@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
-using MindServer.Domain.DataContracts.AbstractDataContracts;
+using MindServer.Services.DataContracts.AbstractDataContracts;
 using Newtonsoft.Json;
 
 namespace MindServer.ActionResults

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
-using MindServer.Domain.DataContracts;
 using MindServer.Domain.Entities;
 using MindServer.Domain.Exceptions;
 using MindServer.Services;
+using MindServer.Services.DataContracts;
 using MindServer.Services.Interfaces;
 using MindServer.Services.Repository.Interfaces;
 using Moq;

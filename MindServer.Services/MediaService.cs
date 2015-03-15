@@ -1,7 +1,12 @@
 ﻿using System;
-using MindServer.Domain.DataContracts;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using MindServer.Domain.Entities;
+using MindServer.Domain.Exceptions;
+using MindServer.Services.DataContracts;
 using MindServer.Services.Interfaces;
 using MindServer.Services.Repository.Interfaces;
+using MindServer.Services.ViewModels;
 
 namespace MindServer.Services
 {
@@ -14,13 +19,13 @@ namespace MindServer.Services
             _unitOfWork = unitOfWork;
         }
 
-        public GetMediaResponse GetAllMedia()
+        public GetAllMediaApiResponse GetAllMediaApiResponse()
         {
             try
             {
-                var mediaItems = _unitOfWork.AudioFileRepository.Get();
+                var mediaItems = GetAllAudioFiles();
 
-                var response = new GetMediaResponse();
+                var response = new GetAllMediaApiResponse();
                 foreach (var mediaItem in mediaItems)
                 {
                     response.MediaFiles.Add(new GetMediaResponseItem(mediaItem));
@@ -31,11 +36,57 @@ namespace MindServer.Services
             }
             catch (Exception e)
             {
-                return new GetMediaResponse
+                return new GetAllMediaApiResponse
                 {
                     Message = string.Format("Internal Error: {0}", e.Message)
                 };
             }
+        }
+
+        public IEnumerable<MediaPostViewModel> GetAllMediaItems()
+        {
+            var audioFiles = GetAllAudioFiles();
+            var mediaPostViewModelsList = new List<MediaPostViewModel>();
+
+            foreach (var audioFile in audioFiles)
+            {
+                mediaPostViewModelsList.Add(new MediaPostViewModel(audioFile));
+            }
+
+            return mediaPostViewModelsList;
+        }
+
+        public async Task<AudioFile> GetAudioFile(long id)
+        {
+            try
+            {
+                return await _unitOfWork.AudioFileRepository.GetAsync(id);
+            }
+            catch (InvalidOperationException e)
+            {
+                throw new AudioFileNotFoundException(e.Message);
+            }
+        }
+
+        public void CreateAudioFile(AudioFile audioFile)
+        {
+            _unitOfWork.AudioFileRepository.Create(audioFile);
+        }
+
+        public void UpdateAudioFile(long id, AudioFile audioFile)
+        {
+            _unitOfWork.AudioFileRepository.Update(id, audioFile);
+        }
+
+        public void DeleteAudioFile(AudioFile audioFile)
+        {
+            _unitOfWork.AudioFileRepository.Delete(audioFile);
+        }
+
+        private IEnumerable<AudioFile> GetAllAudioFiles()
+        {
+            var mediaItems = _unitOfWork.AudioFileRepository.Get();
+            return mediaItems;
         }
     }
 }

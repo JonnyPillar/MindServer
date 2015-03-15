@@ -3,7 +3,7 @@ using Everest;
 using Everest.Content;
 using Everest.Pipeline;
 using Everest.Status;
-using MindServer.Domain.DataContracts;
+using MindServer.Services.DataContracts;
 using MindServer.Tests.Properties;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -14,7 +14,17 @@ namespace MindServer.Tests.AcceptanceTests
     [Category("AcceptanceTests")]
     public class AccountControllerAcceptanceTests
     {
-        private const string MediaApiUrl = "api/admin/login";
+        private const string MediaApiUrl = "admin/login";
+
+        //[SetUp]
+        public void SetUp()
+        {
+            var everest = new RestClient(Settings.Default.BaseUrl);
+            var logInView = everest.Get(MediaApiUrl, new PipelineOption[]
+            {
+                ExpectStatus.OK
+            });
+        }
 
         //[Test]
         public void Index_AdminUserLogIn_OkHttpStatusCodeAndSuccessResponse()

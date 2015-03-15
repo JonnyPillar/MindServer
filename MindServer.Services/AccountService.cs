@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using MindServer.Domain.DataContracts;
 using MindServer.Domain.Entities;
 using MindServer.Domain.Exceptions;
 using MindServer.Domain.Exceptions.AbstractExceptions;
+using MindServer.Services.DataContracts;
 using MindServer.Services.Interfaces;
 using MindServer.Services.Repository.Interfaces;
 using MindServer.Services.Utils;

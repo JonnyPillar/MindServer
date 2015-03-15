@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Web.Http.Results;
 using MindServer.ActionResults;
-using MindServer.Controllers;
-using MindServer.Domain.DataContracts;
+using MindServer.Controllers.Api;
+using MindServer.Services.DataContracts;
 using MindServer.Services.Interfaces;
 using Moq;
 using NUnit.Framework;

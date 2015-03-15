@@ -1,4 +1,4 @@
-﻿namespace MindServer.Domain.DataContracts.AbstractDataContracts
+﻿namespace MindServer.Services.DataContracts.AbstractDataContracts
 {
     public abstract class BaseResponseContract
     {

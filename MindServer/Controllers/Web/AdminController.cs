@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Mvc;
-using MindServer.Domain.DataContracts;
+using MindServer.Services.DataContracts;
 using MindServer.Services.Interfaces;
 
-namespace MindServer.Controllers
+namespace MindServer.Controllers.Web
 {
     public class AdminController : Controller
     {

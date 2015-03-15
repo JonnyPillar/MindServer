@@ -1,4 +1,4 @@
-﻿namespace MindServer.Domain.DataContracts
+﻿namespace MindServer.Services.DataContracts
 {
     public class AdminLogInResponse
     {

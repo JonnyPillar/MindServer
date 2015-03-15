@@ -1,5 +1,5 @@
-﻿using MindServer.Domain.DataContracts;
-using MindServer.Domain.Entities;
+﻿using MindServer.Domain.Entities;
+using MindServer.Services.DataContracts;
 
 namespace MindServer.Services.Interfaces
 {

@@ -2,7 +2,7 @@
 using System.Web.Http;
 using MindServer.Services.Interfaces;
 
-namespace MindServer.Controllers
+namespace MindServer.Controllers.Api
 {
     public class MediaController : ApiController
     {
@@ -17,7 +17,7 @@ namespace MindServer.Controllers
         {
             try
             {
-                var response = _mediaService.GetAllMedia();
+                var response = _mediaService.GetAllMediaApiResponse();
                 return Ok(response);
             }
             catch (Exception e)

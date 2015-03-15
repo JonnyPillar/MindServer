@@ -42,7 +42,7 @@ namespace MindServer.Services.Repository.DataLayer
 
         public IEnumerable<TEntity> GetRange(int page, int quantity)
         {
-            int startIndex = page*quantity;
+            var startIndex = page*quantity;
             return _dbContext.Set<TEntity>().Skip(startIndex).Take(quantity);
         }
 
@@ -66,13 +66,13 @@ namespace MindServer.Services.Repository.DataLayer
         {
             if (entity == null) throw new ArgumentNullException("entity");
 
-            TEntity currentEntity = DbContext.Set<TEntity>().Find(key);
+            var currentEntity = DbContext.Set<TEntity>().Find(key);
             DbContext.Entry(currentEntity).CurrentValues.SetValues(entity);
         }
 
         public bool Exists(Expression<Func<TEntity, bool>> predicate)
         {
-            IQueryable<TEntity> result = _dbContext.Set<TEntity>().Where(predicate);
+            var result = _dbContext.Set<TEntity>().Where(predicate);
             return result.Any();
         }
 
@@ -85,7 +85,7 @@ namespace MindServer.Services.Repository.DataLayer
 
         public void Delete(int id)
         {
-            TEntity entityToDelete = _dbContext.Set<TEntity>().Find(id);
+            var entityToDelete = _dbContext.Set<TEntity>().Find(id);
             if (DbContext.Entry(entityToDelete).State == EntityState.Detached)
             {
                 DbContext.Set<TEntity>().Attach(entityToDelete);

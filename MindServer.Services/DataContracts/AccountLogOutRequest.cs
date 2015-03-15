@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MindServer.Domain.DataContracts
+namespace MindServer.Services.DataContracts
 {
     public struct AccountLogOutRequest
     {

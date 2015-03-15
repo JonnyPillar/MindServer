@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using Everest;
 using Everest.Pipeline;
 using Everest.Status;
-using MindServer.Domain.DataContracts;
+using MindServer.Services.DataContracts;
 using MindServer.Tests.Properties;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -27,7 +27,7 @@ namespace MindServer.Tests.AcceptanceTests
             });
 
             Assert.IsFalse(string.IsNullOrWhiteSpace(response.Body));
-            var deserialisedBody  = JsonConvert.DeserializeObject<GetMediaResponse>(response.Body);
+            var deserialisedBody  = JsonConvert.DeserializeObject<GetAllMediaApiResponse>(response.Body);
 
             Assert.IsTrue(deserialisedBody.Success);
             Assert.IsNullOrEmpty(deserialisedBody.Message);

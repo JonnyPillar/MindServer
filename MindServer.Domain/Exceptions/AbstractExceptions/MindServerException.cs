@@ -11,10 +11,5 @@ namespace MindServer.Domain.Exceptions.AbstractExceptions
         protected MindServerException()
         {
         }
-
-        public override string Message
-        {
-            get { return base.Message; }
-        }
     }
 }

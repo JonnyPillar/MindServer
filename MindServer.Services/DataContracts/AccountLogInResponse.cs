@@ -1,6 +1,6 @@
-﻿using MindServer.Domain.DataContracts.AbstractDataContracts;
+﻿using MindServer.Services.DataContracts.AbstractDataContracts;
 
-namespace MindServer.Domain.DataContracts
+namespace MindServer.Services.DataContracts
 {
     public class AccountLogInResponse : BaseResponseContract
     {

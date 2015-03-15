@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MindServer.Domain.DataContracts;
 using MindServer.Domain.Entities;
+using MindServer.Services.DataContracts;
 
 namespace MindServer.Services.Interfaces
 {

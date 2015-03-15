@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http.Results;
-using MindServer.Controllers;
-using MindServer.Domain.DataContracts;
+using MindServer.Controllers.Api;
 using MindServer.Domain.Entities;
 using MindServer.Domain.Enums;
+using MindServer.Services.DataContracts;
 using MindServer.Services.Interfaces;
 using MindServer.Services.Repository.Interfaces;
 using Moq;
@@ -28,7 +28,7 @@ namespace MindServer.Tests.Controllers
         [Test]
         public void GetMediaFiles_MediaServiceThrowsExecption_ErrorResponseMessageReturned()
         {
-            _mockedMediaService.Setup(x => x.GetAllMedia()).Throws(new Exception());
+            _mockedMediaService.Setup(x => x.GetAllMediaApiResponse()).Throws(new Exception());
 
             var response = _mediaController.GetMediaFiles();
 
@@ -38,11 +38,11 @@ namespace MindServer.Tests.Controllers
         [Test]
         public void GetMediaFiles_ResponseObjectReturned_OkResponseReturned()
         {
-            _mockedMediaService.Setup(x => x.GetAllMedia()).Returns(new GetMediaResponse());
+            _mockedMediaService.Setup(x => x.GetAllMediaApiResponse()).Returns(new GetAllMediaApiResponse());
 
             var response = _mediaController.GetMediaFiles();
 
-            var result = response as OkNegotiatedContentResult<GetMediaResponse>;
+            var result = response as OkNegotiatedContentResult<GetAllMediaApiResponse>;
             Assert.IsNotNull(result);
         }
 
@@ -52,7 +52,7 @@ namespace MindServer.Tests.Controllers
             const int expectedNumberOfListElements = 3;
 
             var userService = new Mock<IMediaService>();
-            userService.Setup(x => x.GetAllMedia()).Returns(new GetMediaResponse
+            userService.Setup(x => x.GetAllMediaApiResponse()).Returns(new GetAllMediaApiResponse
             {
                 Success = true,
                 MediaFiles = new List<GetMediaResponseItem>
@@ -80,7 +80,7 @@ namespace MindServer.Tests.Controllers
 
             _mediaController = new MediaController(userService.Object);
             var response = _mediaController.GetMediaFiles();
-            var result = response as OkNegotiatedContentResult<GetMediaResponse>;
+            var result = response as OkNegotiatedContentResult<GetAllMediaApiResponse>;
 
             Assert.IsNotNull(result);
             var resultContent = result.Content;
@@ -96,7 +96,7 @@ namespace MindServer.Tests.Controllers
             unitOfWorkMock.Setup(x => x.AudioFileRepository.Get()).Returns(new List<AudioFile>());
 
             var userService = new Mock<IMediaService>();
-            userService.Setup(x => x.GetAllMedia()).Returns(new GetMediaResponse()
+            userService.Setup(x => x.GetAllMediaApiResponse()).Returns(new GetAllMediaApiResponse()
             {
                 Success = true,
                 MediaFiles = new List<GetMediaResponseItem>()
@@ -104,7 +104,7 @@ namespace MindServer.Tests.Controllers
 
             _mediaController = new MediaController(userService.Object);
             var response = _mediaController.GetMediaFiles();
-            var result = response as OkNegotiatedContentResult<GetMediaResponse>;
+            var result = response as OkNegotiatedContentResult<GetAllMediaApiResponse>;
 
             Assert.IsNotNull(result);
             var resultContent = result.Content;

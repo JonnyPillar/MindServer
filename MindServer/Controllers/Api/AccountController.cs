@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using MindServer.ActionResults;
-using MindServer.Domain.DataContracts;
 using MindServer.EF;
+using MindServer.Services.DataContracts;
 using MindServer.Services.Interfaces;
 
-namespace MindServer.Controllers
+namespace MindServer.Controllers.Api
 {
     public class AccountController : ApiController
     {

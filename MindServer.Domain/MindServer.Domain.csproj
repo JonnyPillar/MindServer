@@ -55,23 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContracts\AbstractDataContracts\BaseResponseContract.cs" />
-    <Compile Include="DataContracts\AccountLogInRequest.cs" />
-    <Compile Include="DataContracts\AccountLogInResponse.cs" />
-    <Compile Include="DataContracts\AccountLogOutRequest.cs" />
-    <Compile Include="DataContracts\AccountLogOutResponse.cs" />
-    <Compile Include="DataContracts\AccountSignUpRequest.cs" />
-    <Compile Include="DataContracts\AccountSignUpResponse.cs" />
-    <Compile Include="DataContracts\AdminLogInRequest.cs" />
-    <Compile Include="DataContracts\AdminLogInResponse.cs" />
-    <Compile Include="DataContracts\GetMediaResponse.cs" />
-    <Compile Include="DataContracts\GetMediaResponseItem.cs" />
     <Compile Include="Entities\AbstractEntities\BaseEntity.cs" />
     <Compile Include="Entities\AbstractEntities\MediaEntity.cs" />
     <Compile Include="Entities\AudioFile.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\MediaType.cs" />
     <Compile Include="Exceptions\AbstractExceptions\MindServerException.cs" />
+    <Compile Include="Exceptions\AudioFileNotFoundException.cs" />
     <Compile Include="Exceptions\InvalidSessionTokenException.cs" />
     <Compile Include="Exceptions\UserAlreadyExistsException.cs" />
     <Compile Include="Exceptions\UserAuthenticationException.cs" />
