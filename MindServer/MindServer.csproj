@@ -182,6 +182,7 @@
     <Compile Include="Controllers\Web\HomeController.cs" />
     <Compile Include="Controllers\Api\MediaController.cs" />
     <Compile Include="Controllers\Web\MediaWebController.cs" />
+    <Compile Include="CustomHandelers\EnforceHttpsHandler.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
     <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
