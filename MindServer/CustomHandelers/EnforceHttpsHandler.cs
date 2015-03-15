@@ -32,7 +32,7 @@ namespace MindServer.CustomHandelers
                     {
                         var response = new HttpResponseMessage(HttpStatusCode.Forbidden)
                         {
-                            Content = new StringContent("HTTPS Required")
+                            Content = new StringContent("HTTPS Required, URI Scheme: " + request.RequestUri.Scheme)
                         };
 
                         return response;
