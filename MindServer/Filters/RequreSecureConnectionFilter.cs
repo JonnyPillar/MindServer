@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace MindServer.Filters
 {
-    public class RequreSecureConnectionFilter : RequireHttpsAttribute
+    public class RequreSecureConnectionFilter : System.Web.Mvc.RequireHttpsAttribute
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
