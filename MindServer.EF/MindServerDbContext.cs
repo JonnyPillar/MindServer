@@ -1,6 +1,5 @@
 using System.Data.Entity;
 using MindServer.Domain.Entities;
-using MindServer.Domain.Entities.AbstractEntities;
 
 namespace MindServer.EF
 {
