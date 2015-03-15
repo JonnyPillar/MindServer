@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using MindServer.Filters;
 
 namespace MindServer
 {
@@ -8,6 +9,7 @@ namespace MindServer
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new RequreSecureConnectionFilter());
         }
     }
 }

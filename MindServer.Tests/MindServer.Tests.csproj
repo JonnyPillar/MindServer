@@ -116,6 +116,7 @@
     <Compile Include="Controllers\AccountControllerTests.cs" />
     <Compile Include="Controllers\AdminControllerTests.cs" />
     <Compile Include="Controllers\MediaControllerTests.cs" />
+    <Compile Include="Filters\RequreSecureConnectionFilterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountServiceTests.cs" />
     <Compile Include="Services\MediaServiceTests.cs" />

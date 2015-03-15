@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using MindServer.CustomHandelers;
 
 namespace MindServer
 {
@@ -7,6 +8,7 @@ namespace MindServer
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            config.MessageHandlers.Add(new EnforceHttpsHandler());
 
             // Web API routes
             config.MapHttpAttributeRoutes();
