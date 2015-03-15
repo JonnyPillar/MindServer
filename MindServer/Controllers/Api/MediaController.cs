@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Http;
+using MindServer.Domain.Entities.AbstractEntities;
 using MindServer.Services.Interfaces;
 
 namespace MindServer.Controllers.Api
@@ -13,6 +14,8 @@ namespace MindServer.Controllers.Api
             _mediaService = mediaService;
         }
 
+        [HttpGet]
+        [Route("GetMediaFiles")]
         public IHttpActionResult GetMediaFiles()
         {
             try
