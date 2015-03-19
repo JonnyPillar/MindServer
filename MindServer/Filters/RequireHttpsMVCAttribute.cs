@@ -5,7 +5,7 @@ using RequireHttpsAttributeBase = System.Web.Mvc.RequireHttpsAttribute;
 namespace MindServer.Filters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
-    public class RequireHttpsAttribute : RequireHttpsAttributeBase
+    public class RequireHttpsMvcAttribute : RequireHttpsAttributeBase
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
@@ -19,9 +19,15 @@ namespace MindServer.Filters
                 return;
             }
 
-            if (string.Equals(filterContext.HttpContext.Request.Headers["X-Forwarded-Proto"], "https", StringComparison.InvariantCultureIgnoreCase))
+            var temp = filterContext.HttpContext.Request.Headers["X-Forwarded-Proto"];
+
+            if (temp != null)
             {
-                return;
+                if (string.Equals(filterContext.HttpContext.Request.Headers["X-Forwarded-Proto"], "https",
+                    StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return;
+                }
             }
 
             if (filterContext.HttpContext.Request.IsLocal)
