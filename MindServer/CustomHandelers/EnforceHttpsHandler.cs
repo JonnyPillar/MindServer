@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -24,19 +25,28 @@ namespace MindServer.CustomHandelers
                 }
             }
 
+            if (request.Headers.Contains("X-Forwarded-Proto"))
+            {
+                var uriScheme = Convert.ToString(request.Headers.GetValues("X-Forwarded-Proto").First());
+                if (string.Equals(uriScheme, "https", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return base.SendAsync(request, cancellationToken);                    
+                }
+            }
+
             // if request is remote, enforce https
             if (request.RequestUri.Scheme != Uri.UriSchemeHttps)
             {
                 return Task<HttpResponseMessage>.Factory.StartNew(
-                    () =>
+                () =>
+                {
+                    var response = new HttpResponseMessage(HttpStatusCode.Forbidden)
                     {
-                        var response = new HttpResponseMessage(HttpStatusCode.Forbidden)
-                        {
-                            Content = new StringContent("HTTPS Required, URI Scheme: " + request.RequestUri.Scheme)
-                        };
+                        Content = new StringContent("HTTPS Required, URI Scheme: " + request.RequestUri.Scheme)
+                    };
 
-                        return response;
-                    });
+                    return response;
+                });
             }
 
             return base.SendAsync(request, cancellationToken);

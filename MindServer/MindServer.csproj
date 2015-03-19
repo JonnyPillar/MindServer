@@ -191,7 +191,6 @@
     <Compile Include="DependencyResolution\StructureMapWebApiDependencyScope.cs" />
     <Compile Include="Filters\RequireHttpsApiAttribute.cs" />
     <Compile Include="Filters\RequireHttpsMVCAttribute.cs" />
-    <Compile Include="Filters\RequreSecureConnectionFilter.cs" />
     <Compile Include="Filters\UserAuthenticationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

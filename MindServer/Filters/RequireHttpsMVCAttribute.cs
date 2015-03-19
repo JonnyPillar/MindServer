@@ -19,16 +19,12 @@ namespace MindServer.Filters
                 return;
             }
 
-            var temp = filterContext.HttpContext.Request.Headers["X-Forwarded-Proto"];
-
-            if (temp != null)
+            if (string.Equals(filterContext.HttpContext.Request.Headers["X-Forwarded-Proto"], "https",
+                StringComparison.InvariantCultureIgnoreCase))
             {
-                if (string.Equals(filterContext.HttpContext.Request.Headers["X-Forwarded-Proto"], "https",
-                    StringComparison.InvariantCultureIgnoreCase))
-                {
-                    return;
-                }
+                return;
             }
+            
 
             if (filterContext.HttpContext.Request.IsLocal)
             {

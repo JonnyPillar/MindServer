@@ -9,7 +9,7 @@ namespace MindServer
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            //config.MessageHandlers.Add(new EnforceHttpsHandler());
+            config.MessageHandlers.Add(new EnforceHttpsHandler());
             config.Filters.Add(new RequireHttpsApiAttribute());
 
             // Web API routes
