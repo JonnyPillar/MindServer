@@ -9,7 +9,7 @@ namespace MindServer
         {
             filters.Add(new HandleErrorAttribute());
             //filters.Add(new RequireHttpsMvcAttribute());
-            //filters.Add(new RequireHttpsApiAttribute());
+            filters.Add(new RequireHttpsApiAttribute());
             filters.Add(new RequreSecureConnectionFilter());
         }
     }
