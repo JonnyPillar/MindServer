@@ -183,3 +183,10 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+# Bower / NPM
+
+.iml
+.idea/
+node_modules/
+bower_components

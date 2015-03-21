@@ -206,6 +206,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="gulpfile.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -228,6 +229,8 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="package.json" />
+    <Content Include="PreBuild.bat" />
+    <Content Include="bower.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -256,6 +259,7 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Admin\LogIn.cshtml" />
+    <Content Include="Scripts\app.jsx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MindServer.Domain\MindServer.Domain.csproj">
@@ -319,4 +323,7 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
+  <Target Name="EnsureNmpPackageBuildAndGulpBuild" BeforeTargets="BeforeBuild">
+    <Exec Command="PreBuild.bat" WorkingDirectory="$(ProjectDir)" />
+  </Target>
 </Project>
