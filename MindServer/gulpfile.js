@@ -11,7 +11,7 @@ var source = require('vinyl-source-stream');
 */
 
 gulp.task('default', function () {
-	runSequence('bower','compile-build-js');
+    runSequence('bower', 'transform-components-jsx', 'transform-pages-jsx', 'transform-root-jsx', 'browserify');
 });
 
 /*
