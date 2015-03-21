@@ -19,8 +19,8 @@ namespace MindServer.Controllers.Api
         {
             try
             {
-                //var response = _mediaService.GetAllMediaItems();
-                //return Ok(response);
+                var response = _mediaService.GetAllMediaItems();
+                return Ok(response);
                 return Ok();
             }
             catch (Exception e)

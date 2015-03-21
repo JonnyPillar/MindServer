@@ -9,6 +9,7 @@ namespace MindServer.Services.ViewModels
     {
         public MediaPostViewModel(MediaEntity mediaEntity)
         {
+            Id = mediaEntity.Id;
             FileName = mediaEntity.FileName;
             FileUrl = mediaEntity.FileUrl;
             Title = mediaEntity.Title;
@@ -19,6 +20,9 @@ namespace MindServer.Services.ViewModels
             BaseColour = mediaEntity.BaseColour;
             MediaType = mediaEntity.MediaType;
         }
+
+        [Required]
+        public long Id { get; set; }
 
         [Required]
         public string FileName { get; set; }

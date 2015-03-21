@@ -35,10 +35,29 @@ gulp.task('compile-build-js', function () {
 });
 
 gulp.task('transform-jsx', ['clean-build'], function () {
-	return gulp.src('./Scripts/**/*.jsx')
+    
+    runSequence(['transform-root-jsx', 'transform-components-jsx', 'transform-pages-jsx']);
+});
+
+gulp.task('transform-root-jsx', function () {
+    return gulp.src('./Scripts/*.jsx')
         .pipe(react())
         .pipe(gulp.dest('./Scripts/build'));
 });
+
+gulp.task('transform-components-jsx', function () {
+    return gulp.src('./Scripts/Components/**/*.jsx')
+        .pipe(react())
+        .pipe(gulp.dest('./Scripts/build/Components/'));
+});
+
+gulp.task('transform-pages-jsx', function () {
+    return gulp.src('./Scripts/Pages/**/*.jsx')
+        .pipe(react())
+        .pipe(gulp.dest('./Scripts/build/Pages/'));
+});
+
+
 
 gulp.task('browserify', ['clean-release'], function () {
 	return browserify( './Scripts/build/app.js')
