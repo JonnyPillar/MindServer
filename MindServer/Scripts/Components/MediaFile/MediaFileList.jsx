@@ -19,7 +19,7 @@ var MediaFileList = React.createClass({
 					<th></th> //Delete
 				</tr>
 				{
-					this.state.mediaFiles.map(function(mediaFile){
+					this.props.mediaFiles.map(function(mediaFile){
 						return <MediaFileRow key={ mediaFile.Id } mediaFile={ mediaFile } />
 					})
 				}

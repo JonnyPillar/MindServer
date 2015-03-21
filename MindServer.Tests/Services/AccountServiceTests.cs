@@ -43,9 +43,8 @@ namespace MindServer.Tests.Services
             };
 
             var result = _accountService.AdminLogin(accountSignUpRequest);
-            var resultContent = result.Result;
 
-            Assert.IsNotNullOrEmpty(resultContent.Message);
+            Assert.IsNotNullOrEmpty(result.Message);
         }
 
         [Test]
@@ -65,9 +64,8 @@ namespace MindServer.Tests.Services
             };
 
             var result = _accountService.AdminLogin(accountSignUpRequest);
-            var resultContent = result.Result;
 
-            Assert.IsFalse(resultContent.Success);
+            Assert.IsFalse(result.Success);
         }
 
         [Test]
@@ -87,9 +85,8 @@ namespace MindServer.Tests.Services
             };
 
             var result = _accountService.AdminLogin(accountSignUpRequest);
-            var resultContent = result.Result;
 
-            Assert.IsTrue(resultContent.Success);
+            Assert.IsTrue(result.Success);
         }   
 
         [Test]
@@ -105,9 +102,8 @@ namespace MindServer.Tests.Services
             };
 
             var result = _accountService.AdminLogin(accountSignUpRequest);
-            var resultContent = result.Result;
 
-            Assert.IsNotNullOrEmpty(resultContent.Message);
+            Assert.IsNotNullOrEmpty(result.Message);
         }
 
         [Test]
@@ -123,9 +119,8 @@ namespace MindServer.Tests.Services
             };
 
             var result = _accountService.AdminLogin(accountSignUpRequest);
-            var resultContent = result.Result;
 
-            Assert.IsFalse(resultContent.Success);
+            Assert.IsFalse(result.Success);
         }
 
         [Test]

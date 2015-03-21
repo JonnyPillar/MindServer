@@ -179,6 +179,7 @@
     <Compile Include="Controllers\Api\AccountController.cs" />
     <Compile Include="Controllers\Api\AudioController.cs" />
     <Compile Include="Controllers\Web\AdminController.cs" />
+    <Compile Include="Controllers\Web\DashboardController.cs" />
     <Compile Include="Controllers\Web\HomeController.cs" />
     <Compile Include="Controllers\Api\MediaController.cs" />
     <Compile Include="Controllers\Web\MediaWebController.cs" />
@@ -260,6 +261,7 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Admin\LogIn.cshtml" />
     <Content Include="Scripts\app.jsx" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MindServer.Domain\MindServer.Domain.csproj">

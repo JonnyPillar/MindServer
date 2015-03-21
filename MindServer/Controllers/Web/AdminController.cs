@@ -24,7 +24,7 @@ namespace MindServer.Controllers.Web
 
         [System.Web.Mvc.HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> LogIn([FromBody] AdminLogInRequest adminLogInRequest)
+        public ActionResult LogIn([FromBody] AdminLogInRequest adminLogInRequest)
         {
             if (!ModelState.IsValid)
             {
@@ -32,7 +32,7 @@ namespace MindServer.Controllers.Web
             }
             try
             {
-                var response = await _accountService.AdminLogin(adminLogInRequest);
+                var response = _accountService.AdminLogin(adminLogInRequest);
                 if (response.Success)
                 {
                     return RedirectToAction("Index", "Dashboard");

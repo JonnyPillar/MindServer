@@ -11,7 +11,7 @@ var source = require('vinyl-source-stream');
 */
 
 gulp.task('default', function () {
-	runSequence(['bower','compile-build-js']);
+	runSequence('bower','compile-build-js');
 });
 
 /*
@@ -31,12 +31,13 @@ gulp.task('clean-release', function () {
 */
 
 gulp.task('compile-build-js', function () {
-	runSequence(['transform-jsx','browserify']);
+    runSequence('transform-components-jsx', 'transform-pages-jsx', 'transform-root-jsx', 'browserify');
+    //runSequence('transform-jsx', 'browserify');
 });
 
 gulp.task('transform-jsx', ['clean-build'], function () {
     
-    runSequence(['transform-root-jsx', 'transform-components-jsx', 'transform-pages-jsx']);
+    runSequence('transform-components-jsx', 'transform-pages-jsx', 'transform-root-jsx');
 });
 
 gulp.task('transform-root-jsx', function () {

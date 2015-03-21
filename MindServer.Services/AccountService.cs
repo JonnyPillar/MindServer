@@ -102,7 +102,7 @@ namespace MindServer.Services
             return authenticatingUser;
         }
 
-        public async Task<AdminLogInResponse> AdminLogin(AdminLogInRequest logInRequest)
+        public AdminLogInResponse AdminLogin(AdminLogInRequest logInRequest)
         {
             try
             {

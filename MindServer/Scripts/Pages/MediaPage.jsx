@@ -20,6 +20,10 @@ var MediaPage = React.createClass({
 	    }.bind(this));
 	},
 
+	componentDidMount: function() {
+		this.getMediaFiles();
+	},
+
 	render: function() {
 		return (
 			<div>

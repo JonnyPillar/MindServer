@@ -1,5 +1,5 @@
-﻿var react = require('react');
-var reactRouter = require('react-router');
+﻿var React = require('react');
+var Router = require('react-router');
 var Route = Router.Route;
 var	RouteHandler = Router.RouteHandler;
 var	Link = Router.Link;
@@ -27,7 +27,7 @@ var App = React.createClass({
 var routes = (
 	<Route handler={App}>
 	  <Route name="home" handler={HomePage}/>
-	  <Route name="media" handler={MediaPage}>
+	  <Route name="mediaPage" handler={MediaPage}>
 	  	<Route name="createMedia" handler={MediaPage}/>
 	  	<Route name="editMedia" handler={MediaPage}/>
 	  	<Route name="deleteMedia" handler={MediaPage}/>
@@ -36,5 +36,5 @@ var routes = (
 )
 
 Router.run(routes, function (Handler) {
-  React.render(<Handler/>, document.getElementById('body'));
+  React.render(<Handler/>, document.getElementById('react-div'));
 });
