@@ -1,1 +1,3 @@
-node_modules\.bin\gulp
+@echo off
+echo start
+call npm install 
