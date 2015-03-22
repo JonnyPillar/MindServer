@@ -329,7 +329,7 @@
     <Exec Command="PreBuild.bat" WorkingDirectory="$(ProjectDir)" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>call npm install
-node_modules\.bin\gulp</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>
