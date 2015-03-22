@@ -10,7 +10,7 @@ var source = require('vinyl-source-stream');
 *	Default Task
 */
 
-gulp.task('default', function () {
+gulp.task('base-build', function () {
     runSequence('bower', 'transform-components-jsx', 'transform-pages-jsx', 'transform-root-jsx', 'browserify');
 });
 
@@ -73,4 +73,4 @@ gulp.task('bower', function () {
     return bower({ layout: "byComponent" });
 });
 
-gulp.task('default', ['bower']);
+gulp.task('default', ['base-build']);
