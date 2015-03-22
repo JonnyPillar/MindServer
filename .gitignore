@@ -16,8 +16,7 @@ x64/
 x86/
 build/
 bld/
-MindServer/[Bb]in/
-!/node_modules/**/bin/*.js
+[Bb]in/
 [Oo]bj/
 
 # Roslyn cache directories
@@ -188,4 +187,5 @@ FakesAssemblies/
 
 .iml
 .idea/
+node_modules
 bower_components
