@@ -16,8 +16,8 @@ x64/
 x86/
 build/
 bld/
-[Bb]in/
-!node_modules/gulp/[Bb]in/
+MindServer/[Bb]in/
+!/node_modules/**/bin/*.js
 [Oo]bj/
 
 # Roslyn cache directories
