@@ -159,7 +159,6 @@ ClientBin/
 *.dbproj.schemaview
 *.pfx
 *.publishsettings
-node_modules/
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -188,6 +187,4 @@ FakesAssemblies/
 
 .iml
 .idea/
-!node_modules
-!node_modules/**/bin
 bower_components
