@@ -7,7 +7,7 @@ namespace MindServer.Services.DataContracts
     public class GetMediaResponseItem
     {
         public GetMediaResponseItem(string fileName, string fileUrl, string description, string thumbnailUrl,
-            string imageUrl, MediaType mediaType, string title, TimeSpan duration, string baseColour = "Red")
+            string imageUrl, MediaType mediaType, string title, TimeSpan duration, int order, string baseColour = "Red")
         {
             FileName = fileName;
             FileUrl = fileUrl;
@@ -18,6 +18,7 @@ namespace MindServer.Services.DataContracts
             Title = title;
             Duration = duration.ToString("g");
             BaseColour = baseColour;
+            Order = order;
         }
 
         public GetMediaResponseItem(MediaEntity mediaEntity)
@@ -31,6 +32,7 @@ namespace MindServer.Services.DataContracts
             Title = mediaEntity.Title;
             Duration = mediaEntity.Duration.ToString("g");
             BaseColour = mediaEntity.BaseColour;
+            Order = mediaEntity.Order;
         }
 
         public GetMediaResponseItem()
@@ -46,5 +48,6 @@ namespace MindServer.Services.DataContracts
         public string Title { get; set; }
         public string Duration { get; set; }
         public string BaseColour {get;set;}
+        public int Order {get;set;}
     }
 }
