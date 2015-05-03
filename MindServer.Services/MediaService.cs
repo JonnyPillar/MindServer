@@ -92,8 +92,9 @@ namespace MindServer.Services
 
         private IEnumerable<AudioFile> GetAllEnabledAudioFilesInOrder()
         {
-            var mediaItems = _unitOfWork.AudioFileRepository.Find(file => file.Enabled).OrderBy(file => file.Order);
-            return mediaItems;
+            var mediaItems = _unitOfWork.AudioFileRepository.Find(file => file.Enabled);
+            var orderedMediaItems = mediaItems.OrderBy(file => file.Order);
+            return orderedMediaItems;
         }
     }
 }
