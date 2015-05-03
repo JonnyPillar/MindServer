@@ -12,16 +12,22 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Duration)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Order)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedDateTime)
+            @Html.DisplayNameFor(model => model.Enabled)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MediaType)
         </th>
         <th></th>
     </tr>
@@ -29,16 +35,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.FileName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Duration)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
+            @Html.DisplayFor(modelItem => item.Order)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedDateTime)
+            @Html.DisplayFor(modelItem => item.Enabled)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MediaType)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

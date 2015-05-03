@@ -31,6 +31,12 @@ namespace MindServer.Domain.Entities.AbstractEntities
         public string BaseColour { get; set; }
 
         [Required]
+        public int Order { get; set; }
+
+        [Required]
+        public bool Enabled { get; set; }
+
+        [Required]
         public MediaType MediaType { get; set; }
     }
 }

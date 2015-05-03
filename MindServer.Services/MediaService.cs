@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MindServer.Domain.Entities;
 using MindServer.Domain.Exceptions;
@@ -23,7 +24,7 @@ namespace MindServer.Services
         {
             try
             {
-                var mediaItems = GetAllAudioFiles();
+                var mediaItems = GetAllEnabledAudioFilesInOrder();
 
                 var response = new GetAllMediaApiResponse();
                 foreach (var mediaItem in mediaItems)
@@ -86,6 +87,12 @@ namespace MindServer.Services
         private IEnumerable<AudioFile> GetAllAudioFiles()
         {
             var mediaItems = _unitOfWork.AudioFileRepository.Get();
+            return mediaItems;
+        }
+
+        private IEnumerable<AudioFile> GetAllEnabledAudioFilesInOrder()
+        {
+            var mediaItems = _unitOfWork.AudioFileRepository.Find(file => file.Enabled).OrderBy(file => file.Order);
             return mediaItems;
         }
     }

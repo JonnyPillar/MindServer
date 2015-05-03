@@ -76,21 +76,28 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enabled)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.MediaType)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.MediaType)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedDateTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedDateTime)
-        </dd>
-
     </dl>
 
     @using (Html.BeginForm()) {

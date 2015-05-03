@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201503012011570_Added Base Colour to Media Entity.Designer.cs">
       <DependentUpon>201503012011570_Added Base Colour to Media Entity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505031807361_Added order and anabled field to Media files.cs" />
+    <Compile Include="Migrations\201505031807361_Added order and anabled field to Media files.Designer.cs">
+      <DependentUpon>201505031807361_Added order and anabled field to Media files.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MindServerDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503012011570_Added Base Colour to Media Entity.resx">
       <DependentUpon>201503012011570_Added Base Colour to Media Entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505031807361_Added order and anabled field to Media files.resx">
+      <DependentUpon>201505031807361_Added order and anabled field to Media files.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
