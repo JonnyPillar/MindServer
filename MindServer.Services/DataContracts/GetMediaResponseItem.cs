@@ -23,6 +23,7 @@ namespace MindServer.Services.DataContracts
 
         public GetMediaResponseItem(MediaEntity mediaEntity)
         {
+            Id = mediaEntity.Id;
             FileName = mediaEntity.FileName;
             FileUrl = mediaEntity.FileUrl;
             Description = mediaEntity.Description;
@@ -39,6 +40,7 @@ namespace MindServer.Services.DataContracts
         {
         }
 
+        public int Id { get; set; }
         public string FileName { get; set; }
         public string FileUrl { get; set; }
         public string Description { get; set; }
