@@ -183,8 +183,9 @@
     <Compile Include="Controllers\Web\DashboardController.cs" />
     <Compile Include="Controllers\Web\HomeController.cs" />
     <Compile Include="Controllers\Api\MediaController.cs" />
+    <Compile Include="Controllers\Web\InformationController.cs" />
     <Compile Include="Controllers\Web\LoginController.cs" />
-    <Compile Include="Controllers\Web\MediaWebController.cs" />
+    <Compile Include="CustomHandelers\MediaWebController.cs" />
     <Compile Include="CustomHandelers\EnforceHttpsHandler.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
@@ -280,6 +281,8 @@
     <Content Include="Views\AudioFiles\Edit.cshtml" />
     <Content Include="Views\AudioFiles\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Information\Index.cshtml" />
+    <Content Include="Views\Shared\_AppLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MindServer.Domain\MindServer.Domain.csproj">
