@@ -30,3 +30,31 @@ textarea {
 .front-page-image {
     padding: 20px;
 }
+
+.information {
+    
+}
+
+.information ul {
+    display: flex;
+    flex: 1;
+    align-items: stretch;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+    .information ul li {
+        flex: 1;
+        display: inline;
+        background-color: #0e76bc;
+        padding: 10px;
+        text-align: center;
+        font-weight: 500;
+        color: white;
+        margin: 0 5px;
+    }
+
+    .information ul li .selected {
+
+    }
