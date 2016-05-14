@@ -3,17 +3,30 @@
 }
 <div class="row information">
     <div class="col-xs-12">
-        <ul>
-            <li class="selected">The App</li>
-            <li>About Us</li>
-            <li>T & C</li>
+        <ul class="information_menu">
+            <li class="the_app">The App</li>
+            <li class="about_us">About Us</li>
+            <li class="terms_conditions">T & C</li>
         </ul>
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 information_content">
         @Html.Partial("_partials/_theApp")
         @Html.Partial("_partials/_aboutUs")
         @Html.Partial("_partials/_termsAndConditions")
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('.information_content .row').hide();
+        $('.information_content .row:first-child').show();
+
+        $('.information_menu li').click(function() {
+            var className = $(this).attr('class');
+            $('.information_content .row').hide();
+            $('.information_content .' + className).show();
+        });
+    });
+</script>
