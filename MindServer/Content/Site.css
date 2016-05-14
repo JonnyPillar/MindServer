@@ -58,6 +58,7 @@ textarea {
         margin: 0 5px;
     }
 
-    .information ul li .selected {
-
+    .information ul li.selected {
+        border-bottom: 5px solid red;
+        padding-bottom: 5px;
     }

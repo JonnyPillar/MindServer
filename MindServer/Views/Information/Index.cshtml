@@ -4,9 +4,9 @@
 <div class="row information">
     <div class="col-xs-12">
         <ul class="information_menu">
-            <li class="the_app">The App</li>
-            <li class="about_us">About Us</li>
-            <li class="terms_conditions">T & C</li>
+            <li id="the_app" class="selected">The App</li>
+            <li id="about_us">About Us</li>
+            <li id="terms_conditions">T & C</li>
         </ul>
     </div>
 </div>
@@ -23,9 +23,12 @@
         $('.information_content .row').hide();
         $('.information_content .row:first-child').show();
 
-        $('.information_menu li').click(function() {
-            var className = $(this).attr('class');
+        $('.information_menu li').click(function () {
             $('.information_content .row').hide();
+            $('.information_menu li.selected').removeClass('selected');
+            $(this).addClass('selected');
+
+            var className = $(this).attr('id');
             $('.information_content .' + className).show();
         });
     });
