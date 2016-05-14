@@ -283,6 +283,9 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Information\Index.cshtml" />
     <Content Include="Views\Shared\_AppLayout.cshtml" />
+    <Content Include="Views\Information\_partials\_theApp.cshtml" />
+    <Content Include="Views\Information\_partials\_aboutUs.cshtml" />
+    <Content Include="Views\Information\_partials\_termsAndConditions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MindServer.Domain\MindServer.Domain.csproj">
