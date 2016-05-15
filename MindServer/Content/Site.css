@@ -51,7 +51,7 @@ textarea {
     .information ul li {
         flex: 1;
         display: inline;
-        background-color: #0e76bc;
+        background-color: #20a9ff;
         padding: 15px;
         text-align: center;
         font-weight: 500;
@@ -60,6 +60,6 @@ textarea {
     }
 
     .information ul li.selected {
-        border-bottom: 5px solid red;
+        border-bottom: 5px solid #e7282a;
         padding-bottom: 5px;
     }
