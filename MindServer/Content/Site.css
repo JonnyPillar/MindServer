@@ -39,6 +39,11 @@ textarea {
     
 }
 
+.information_content h2 {
+    border-bottom: 3px solid #20a9ff;
+}
+
+
 .information ul {
     display: flex;
     flex: 1;
