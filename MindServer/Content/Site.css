@@ -62,11 +62,24 @@ textarea {
 .information {
     
 }
+.information_content .content {
+    background: #f6f6f6;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
 
 .information_content h2 {
+    margin-top: 0;
+    padding-bottom: 5px;
     border-bottom: 3px solid #20a9ff;
     font-family: 'liberation_sansregular';
 }
+
+
 
 
 .information ul {
